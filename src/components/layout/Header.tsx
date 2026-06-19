@@ -9,7 +9,7 @@ import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
 const navLinks = [
   { href: "/", label: "홈" },
-  { href: "/about", label: "소개" },
+  { href: "/examples", label: "예제" },
   { href: "/docs", label: "문서" },
 ];
 
