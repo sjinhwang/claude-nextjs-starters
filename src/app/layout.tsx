@@ -17,15 +17,14 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Next.js Starter",
-    template: "%s | Next.js Starter",
+    default: "InvoiceHub",
+    template: "%s | InvoiceHub",
   },
   description:
-    "Next.js 16 + React 19 + Tailwind CSS v4 + TypeScript 기반의 스타터 템플릿",
+    "Notion API 기반 견적서 생성·관리·공유 시스템",
   openGraph: {
-    title: "Next.js Starter",
-    description:
-      "Next.js 16 + React 19 + Tailwind CSS v4 + TypeScript 기반의 스타터 템플릿",
+    title: "InvoiceHub",
+    description: "Notion API 기반 견적서 생성·관리·공유 시스템",
     type: "website",
   },
 };
