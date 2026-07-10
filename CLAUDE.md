@@ -1,5 +1,9 @@
 @AGENTS.md
 
+**InvoiceHub**는 Notion API를 CMS/DB로 활용하여 견적서를 생성·관리·공유하는 MVP 웹 서비스입니다.
+
+상세 요구사항은 @/docs/PRD.md 참조
+
 ## 기술 스택
 
 - **Next.js 16.2.9** — App Router 전용, Turbopack 기본 번들러
@@ -23,15 +27,16 @@ src/
 ├── app/                     # App Router 페이지 및 레이아웃
 │   ├── layout.tsx           # 루트 레이아웃 (폰트, 테마 스크립트)
 │   ├── globals.css          # Tailwind v4 설정 + CSS 변수 테마
-│   ├── about/page.tsx
-│   ├── docs/page.tsx
-│   ├── examples/page.tsx
-│   └── api/hello/route.ts
+│   ├── page.tsx             # 홈 (견적서 앱 진입점)
+│   ├── invoices/            # 견적서 관련 라우트
+│   │   ├── page.tsx         # 견적서 목록 (예정)
+│   │   ├── new/page.tsx     # 새 견적서 작성 (예정)
+│   │   └── [token]/page.tsx # 견적서 공개 조회 — F001, F002, F003
+│   └── admin/page.tsx       # 어드민 견적서 목록 — F004, F005, F006 (예정)
 ├── components/
-│   ├── ui/                  # Button, Card, Badge, CodeBlock, input, label, textarea
+│   ├── ui/                  # Button, Card, Badge, input, label, textarea
 │   ├── layout/              # Header, Footer, Container
-│   ├── theme/               # ThemeProvider, ThemeToggle
-│   └── examples/            # ExampleCard
+│   └── theme/               # ThemeProvider, ThemeToggle
 ├── hooks/useLocalStorage.ts
 └── lib/utils.ts             # cn() 유틸리티 (clsx + tailwind-merge)
 ```

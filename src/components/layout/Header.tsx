@@ -7,11 +7,8 @@ import { useState } from "react";
 import Container from "./Container";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
-const navLinks = [
-  { href: "/", label: "홈" },
-  { href: "/examples", label: "예제" },
-  { href: "/docs", label: "문서" },
-];
+// MVP 범위: /admin 라우트만 존재합니다
+const navLinks = [{ href: "/admin", label: "어드민" }];
 
 export default function Header() {
   const pathname = usePathname();
@@ -24,7 +21,7 @@ export default function Header() {
           href="/"
           className="text-sm font-semibold text-zinc-900 dark:text-zinc-50"
         >
-          Next.js Starter
+          InvoiceHub
         </Link>
 
         {/* 데스크탑 네비게이션 */}
