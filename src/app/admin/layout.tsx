@@ -1,8 +1,6 @@
-import { FileText } from "lucide-react";
 import { isAdminAuthenticated } from "@/lib/session";
 import AdminLoginForm from "./AdminLoginForm";
-import LogoutButton from "./LogoutButton";
-import AdminSidebar from "./AdminSidebar";
+import AdminShell from "./AdminShell";
 import Container from "@/components/layout/Container";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
@@ -11,6 +9,9 @@ import { ThemeToggle } from "@/components/theme/ThemeToggle";
  * 기존에는 클라이언트 state(phase)로 인증 화면/목록 화면을 토글했기 때문에
  * 새로고침 시 인증이 풀리는 문제가 있었다. 이제 서명된 세션 쿠키를 서버에서
  * 검증하므로 새로고침해도 로그인 상태가 유지된다.
+ *
+ * 인증된 화면의 헤더/사이드바(모바일 드로어 포함)는 클라이언트 상태가
+ * 필요해 `AdminShell`(Client Component)에 위임한다.
  */
 export default async function AdminLayout({
   children,
@@ -35,27 +36,5 @@ export default async function AdminLayout({
     );
   }
 
-  // 인증됨: 어드민 전용 헤더 + 사이드바 + 콘텐츠로 구성된 앱 셸
-  return (
-    <div className="flex min-h-svh flex-col">
-      <header className="flex h-14 shrink-0 items-center justify-between border-b border-zinc-200 px-6 dark:border-zinc-800">
-        <div className="flex items-center gap-2">
-          <span className="rounded-md bg-zinc-100 p-1.5 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">
-            <FileText size={18} />
-          </span>
-          <span className="font-semibold text-zinc-900 dark:text-zinc-50">
-            견적서 관리 시스템
-          </span>
-        </div>
-        <div className="flex items-center gap-2">
-          <ThemeToggle />
-          <LogoutButton />
-        </div>
-      </header>
-      <div className="flex flex-1">
-        <AdminSidebar />
-        <main className="flex-1 p-8">{children}</main>
-      </div>
-    </div>
-  );
+  return <AdminShell>{children}</AdminShell>;
 }

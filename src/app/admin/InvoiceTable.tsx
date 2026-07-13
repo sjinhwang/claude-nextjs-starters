@@ -135,8 +135,8 @@ export default function InvoiceTable({
         </p>
       )}
 
-      <div className="overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800">
-        <table className="w-full text-sm">
+      <div className="overflow-x-auto rounded-lg border border-zinc-200 dark:border-zinc-800">
+        <table className="w-full min-w-[640px] text-sm">
           <thead className="bg-zinc-50 dark:bg-zinc-900">
             <tr className="border-b border-zinc-200 dark:border-zinc-800 text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
               <th className="px-4 py-3 text-left">견적서 번호</th>

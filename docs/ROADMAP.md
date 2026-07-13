@@ -135,14 +135,20 @@ MVP는 견적서 웹 조회(F001)·PDF 다운로드(F002)·Notion 연동(F003)·
 
 | 태스크 ID | 설명 | 관련 기능 | 상태 |
 |-----------|------|-----------|------|
-| T801 | E2E 통합 테스트 — 어드민 로그인(세션 유지) → 링크 복사 → 공개 조회 → PDF, 라이트/다크 양쪽에서 검증 | F001~F009 | `[ ]` |
-| T802 | 반응형/접근성 재점검 — 어드민 레이아웃·복사 버튼 모바일 뷰포트, 다크 모드 대비 | F004, F008, F009 | `[ ]` |
-| T803 | 프로덕션 배포 및 스모크 테스트 — Vercel 반영 후 실 도메인에서 세션·복사·다크모드 재확인 | F007~F009 | `[ ]` |
+| T801 | E2E 통합 테스트 — 어드민 로그인(세션 유지) → 링크 복사 → 공개 조회 → PDF, 라이트/다크 양쪽에서 검증 | F001~F009 | `[x]` |
+| T802 | 반응형/접근성 재점검 — 어드민 레이아웃·복사 버튼 모바일 뷰포트, 다크 모드 대비 | F004, F008, F009 | `[x]` |
+| T803 | 프로덕션 배포 및 스모크 테스트 — Vercel 반영 후 실 도메인에서 세션·복사·다크모드 재확인 | F007~F009 | `[x]` |
+
+> **T802 구현 내용**: 어드민 사이드바가 고정 너비(`w-56`)로 모바일에서 토글 없이 그대로 노출되던 문제를 발견 — 헤더/사이드바 로직을 `AdminShell.tsx`(Client Component)로 분리하고 `md:hidden` 햄버거 버튼 +오버레이 드로어를 추가했다(`AdminSidebar.tsx`는 nav 목록만 남기고 데스크톱/모바일 양쪽에서 재사용). `InvoiceTable.tsx`의 테이블 래퍼는 `overflow-hidden` → `overflow-x-auto` + `min-w-[640px]`로 바꿔 좁은 화면에서 복사/미리보기 버튼이 찌그러지지 않고 가로 스크롤되도록 함.
+>
+> **T803**: Vercel과 GitHub 연동으로 자동 배포되는 구조라 별도 배포 조작 없이 master 푸시만으로 반영됨. 프로덕션 도메인(`https://claude-nextjs-starters-aidt.vercel.app`, v1 배포 기록 기준)에서 사용자가 직접 세션·복사·다크모드를 확인 완료.
 
 **Phase 8 테스트 체크리스트 (⚠️ 구현 후 필수 수행 — Playwright MCP)**
-- `[ ]` 로그인 → 복사 → (복사 URL로) 공개 조회 → PDF 전체 플로우가 라이트/다크에서 모두 동작하는지 검증 (`browser_navigate`, `browser_fill_form`, `browser_click`, `browser_snapshot`)
-- `[ ]` 모바일/데스크톱 뷰포트별 어드민 레이아웃과 복사 버튼 렌더링 검증 (`browser_resize`, `browser_snapshot`)
-- `[ ]` 프로덕션(HTTPS)에서 클립보드 복사와 세션 쿠키가 정상 동작하는지 검증 (`browser_navigate`, `browser_network_requests`, `browser_evaluate`)
+- `[x]` 로그인 → 복사 → (복사 URL로) 공개 조회 → PDF 전체 플로우가 라이트/다크에서 모두 동작하는지 검증 — 사용자 브라우저 수동 확인, 정상
+- `[x]` 모바일/데스크톱 뷰포트별 어드민 레이아웃과 복사 버튼 렌더링 검증 — 사용자 브라우저 수동 확인, 정상
+- `[x]` 프로덕션(HTTPS)에서 클립보드 복사와 세션 쿠키가 정상 동작하는지 검증 — 사용자가 프로덕션 도메인에서 직접 확인, 정상
+
+> 참고: 이번 세션에는 Playwright MCP 브라우저 도구가 연결되어 있지 않아, 자동화 테스트 대신 `tsc`/`lint`/`build` 통과 확인(Claude) + 실제 브라우저·프로덕션 수동 확인(사용자)으로 대체 수행했다.
 
 ---
 
@@ -155,9 +161,9 @@ MVP는 견적서 웹 조회(F001)·PDF 다운로드(F002)·Notion 연동(F003)·
 - **Phase 5 (T501~T505)** — 어드민 전용 레이아웃 + 세션 지속 (요구사항 1). `src/lib/session.ts`(HMAC-SHA256 서명 세션 쿠키, `ADMIN_PASSWORD` 재사용), `admin/layout.tsx`(인증 게이트), `AdminLoginForm`/`LogoutButton`/`InvoiceTable` 분리. 구현 중 미인증 상태에서 RSC 페이로드에 견적서 데이터가 유출되던 취약점을 발견·수정(`isAdminAuthenticated()` 자체 재검증 가드). 이후 사용자 요청으로 사이드바+대시보드 랜딩 레이아웃(`/admin` 대시보드, `/admin/invoices` 목록 분리)도 추가 반영.
 - **Phase 6 (T601~T605)** — 공유 링크 클립보드 복사, F005 실질 완성 (요구사항 2). `src/lib/invoice-url.ts`(공유 URL 생성 유틸), `InvoiceTable.tsx`에 복사 버튼(성공/실패 피드백, `execCommand` 폴백) 추가.
 - **Phase 7 (T701~T705)** — 다크모드 커버리지 + 공개 조회 페이지 정책 (요구사항 3). 공개 조회 페이지(`invoices/[token]/page.tsx`, `loading.tsx`)에 다크 클래스 추가, `globals.css` 인쇄 규칙에 배경 강제 투명 처리 보강, 커스텀 404(`src/app/not-found.tsx`) 신설, `InvoiceTable`/어드민 대시보드 명암비 갭 수정. 사용자 브라우저 검증 중 어드민 헤더에 다크모드 토글이 없던 회귀(Phase 5의 공통 헤더 숨김 때문)를 발견해 `admin/layout.tsx`에 `ThemeToggle` 추가로 완료.
+- **Phase 8 (T801~T803)** — 통합 QA 및 배포. `AdminShell.tsx` 신설로 모바일 사이드바 드로어 대응, `InvoiceTable` 가로 스크롤 처리(T802). GitHub 연동 자동 배포로 별도 배포 조작 없이 반영되며, 사용자가 통합 플로우(로그인 유지→복사→공개 조회→PDF, 라이트/다크)와 프로덕션 도메인 스모크 테스트를 직접 확인 완료(T801, T803).
 
-### 진행 예정 `[ ]` (v2 고도화 — 우선순위 순)
-- **Phase 8 (T801~T803)** — 통합 QA 및 배포
+### v2 고도화 완료 — 요구사항 1~3(F007~F009) 전체 달성
 
 ### 인계 메모 (v1에서 이월)
 - 발행인 정보 환경변수(`NEXT_PUBLIC_ISSUER_NAME/CONTACT/ADDRESS`) 프로덕션 값 미설정 — 현재 placeholder 표시 중. 배포 시 함께 반영 권장.
