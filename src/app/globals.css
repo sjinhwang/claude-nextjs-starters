@@ -149,8 +149,11 @@
     print-color-adjust: exact;
   }
 
-  /* 모든 텍스트 검정색 강제 (가독성 보장) */
+  /* 다크 모드로 열람 중이었더라도 인쇄 시에는 항상 라이트로 강제한다.
+     (T702) 배경은 전부 투명(=흰 용지) 처리하고 텍스트는 검정 고정 —
+     개별 요소마다 print: 변형 클래스를 붙이지 않아도 되도록 전역에서 보장. */
   * {
+    background-color: transparent !important;
     color: black !important;
   }
 }

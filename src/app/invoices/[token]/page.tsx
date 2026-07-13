@@ -45,13 +45,13 @@ export default async function InvoicePage({ params }: PageProps) {
       </div>
 
       {/* A4 견적서 본문 */}
-      <div className="mx-auto max-w-[794px] bg-white text-zinc-900 shadow-lg print:shadow-none">
+      <div className="mx-auto max-w-[794px] bg-white text-zinc-900 shadow-lg dark:bg-zinc-900 dark:text-zinc-50 print:shadow-none">
         <div className="p-5 sm:p-12 print:p-8">
           {/* 헤더 */}
-          <div className="flex items-start justify-between border-b-2 border-zinc-900 pb-6">
+          <div className="flex items-start justify-between border-b-2 border-zinc-900 pb-6 dark:border-zinc-100">
             <h1 className="text-2xl font-bold tracking-wide sm:text-4xl sm:tracking-widest">견 적 서</h1>
             <div className="text-right text-sm">
-              <p className="text-zinc-400">견적서 번호</p>
+              <p className="text-zinc-400 dark:text-zinc-500">견적서 번호</p>
               <p className="text-base font-semibold">{invoice.견적서번호}</p>
             </div>
           </div>
@@ -59,29 +59,29 @@ export default async function InvoicePage({ params }: PageProps) {
           {/* 수신인 / 발행인 */}
           <div className="mt-6 grid grid-cols-2 gap-8">
             <div>
-              <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-zinc-400">
+              <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
                 수신인
               </p>
               <p className="text-lg font-semibold">{invoice.클라이언트명} 귀중</p>
             </div>
             <div>
-              <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-zinc-400">
+              <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
                 발행인
               </p>
               <p className="font-semibold">{issuerName}</p>
-              <p className="text-sm text-zinc-500">{issuerContact}</p>
-              <p className="text-sm text-zinc-500">{issuerAddress}</p>
+              <p className="text-sm text-zinc-500 dark:text-zinc-400">{issuerContact}</p>
+              <p className="text-sm text-zinc-500 dark:text-zinc-400">{issuerAddress}</p>
             </div>
           </div>
 
           {/* 날짜 정보 */}
-          <div className="mt-6 grid grid-cols-2 gap-4 rounded-lg bg-zinc-50 px-4 py-3 text-sm print:bg-transparent print:border print:border-zinc-200">
+          <div className="mt-6 grid grid-cols-2 gap-4 rounded-lg bg-zinc-50 px-4 py-3 text-sm dark:bg-zinc-800 print:bg-transparent print:border print:border-zinc-200">
             <div className="flex gap-2">
-              <span className="text-zinc-400">발행일</span>
+              <span className="text-zinc-400 dark:text-zinc-500">발행일</span>
               <span className="font-medium">{formatDate(invoice.발행일)}</span>
             </div>
             <div className="flex gap-2">
-              <span className="text-zinc-400">유효기간</span>
+              <span className="text-zinc-400 dark:text-zinc-500">유효기간</span>
               <span className="font-medium">{formatDate(invoice.유효기간)}</span>
             </div>
           </div>
@@ -89,21 +89,21 @@ export default async function InvoicePage({ params }: PageProps) {
           {/* 품목 테이블 */}
           <table className="mt-8 w-full text-sm">
             <thead>
-              <tr className="border-y border-zinc-200 text-xs font-semibold uppercase tracking-wider text-zinc-400">
+              <tr className="border-y border-zinc-200 text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:border-zinc-700 dark:text-zinc-500">
                 <th className="py-3 pr-2 text-left sm:pr-4">품목</th>
                 <th className="w-10 py-3 pr-2 text-right sm:w-16 sm:pr-4">수량</th>
                 <th className="w-16 py-3 pr-2 text-right sm:w-32 sm:pr-4">단가</th>
                 <th className="w-20 py-3 text-right sm:w-36">금액</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-zinc-100">
+            <tbody className="divide-y divide-zinc-100 dark:divide-zinc-800">
               {invoice.항목.map((item) => (
                 <tr key={item.id}>
                   <td className="py-3 pr-2 font-medium sm:pr-4">{item.항목명}</td>
-                  <td className="py-3 pr-2 text-right text-zinc-500 sm:pr-4">
+                  <td className="py-3 pr-2 text-right text-zinc-500 dark:text-zinc-400 sm:pr-4">
                     {item.수량 ?? "-"}
                   </td>
-                  <td className="py-3 pr-2 text-right text-zinc-500 sm:pr-4">
+                  <td className="py-3 pr-2 text-right text-zinc-500 dark:text-zinc-400 sm:pr-4">
                     {formatKRW(item.단가)}
                   </td>
                   <td className="py-3 text-right font-medium">
@@ -115,17 +115,17 @@ export default async function InvoicePage({ params }: PageProps) {
           </table>
 
           {/* 합계 */}
-          <div className="mt-6 border-t border-zinc-200 pt-4">
+          <div className="mt-6 border-t border-zinc-200 pt-4 dark:border-zinc-700">
             <div className="ml-auto max-w-60 space-y-2 text-sm">
               <div className="flex justify-between">
-                <span className="text-zinc-400">공급가액</span>
+                <span className="text-zinc-400 dark:text-zinc-500">공급가액</span>
                 <span className="font-medium">{formatKRW(supplyAmount)}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-zinc-400">부가세 (10%)</span>
+                <span className="text-zinc-400 dark:text-zinc-500">부가세 (10%)</span>
                 <span className="font-medium">{formatKRW(vat)}</span>
               </div>
-              <div className="flex justify-between border-t border-zinc-900 pt-2 text-base font-bold">
+              <div className="flex justify-between border-t border-zinc-900 pt-2 text-base font-bold dark:border-zinc-100">
                 <span>합계</span>
                 <span>{formatKRW(total)}</span>
               </div>

@@ -15,7 +15,7 @@ export default function AdminDashboardPage() {
         <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50">
           관리자 대시보드
         </h1>
-        <p className="mt-1 text-sm text-zinc-500">
+        <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
           견적서 관리 시스템에 오신 것을 환영합니다
         </p>
       </div>
@@ -25,7 +25,7 @@ export default function AdminDashboardPage() {
           <Card className="h-full transition-colors hover:border-zinc-300 dark:hover:border-zinc-700">
             <CardHeader className="flex flex-row items-center justify-between">
               <CardTitle>견적서 관리</CardTitle>
-              <FileText className="size-5 text-zinc-400" />
+              <FileText className="size-5 text-zinc-400 dark:text-zinc-500" />
             </CardHeader>
             <CardContent>발행한 모든 견적서를 확인하고 관리할 수 있습니다.</CardContent>
           </Card>
@@ -34,7 +34,7 @@ export default function AdminDashboardPage() {
         <Card className="h-full cursor-not-allowed opacity-60">
           <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle>클라이언트 관리</CardTitle>
-            <Users className="size-5 text-zinc-400" />
+            <Users className="size-5 text-zinc-400 dark:text-zinc-500" />
           </CardHeader>
           <CardContent>클라이언트 정보를 확인하고 관리할 수 있습니다.</CardContent>
         </Card>
@@ -42,7 +42,7 @@ export default function AdminDashboardPage() {
         <Card className="h-full cursor-not-allowed opacity-60">
           <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle>최근 활동</CardTitle>
-            <Clock className="size-5 text-zinc-400" />
+            <Clock className="size-5 text-zinc-400 dark:text-zinc-500" />
           </CardHeader>
           <CardContent>최근 견적서 발행 및 승인 현황을 확인할 수 있습니다.</CardContent>
         </Card>

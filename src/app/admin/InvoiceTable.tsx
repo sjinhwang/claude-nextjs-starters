@@ -116,7 +116,7 @@ export default function InvoiceTable({
           <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50">
             견적서 관리
           </h1>
-          <p className="mt-1 text-sm text-zinc-500">총 {invoices.length}건</p>
+          <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">총 {invoices.length}건</p>
         </div>
         <Button
           variant="outline"
@@ -138,7 +138,7 @@ export default function InvoiceTable({
       <div className="overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800">
         <table className="w-full text-sm">
           <thead className="bg-zinc-50 dark:bg-zinc-900">
-            <tr className="border-b border-zinc-200 dark:border-zinc-800 text-xs font-semibold uppercase tracking-wider text-zinc-500">
+            <tr className="border-b border-zinc-200 dark:border-zinc-800 text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
               <th className="px-4 py-3 text-left">견적서 번호</th>
               <th className="px-4 py-3 text-left">클라이언트</th>
               <th className="px-4 py-3 text-left">발행일</th>
@@ -151,7 +151,7 @@ export default function InvoiceTable({
               <tr>
                 <td
                   colSpan={5}
-                  className="px-4 py-10 text-center text-zinc-400"
+                  className="px-4 py-10 text-center text-zinc-400 dark:text-zinc-500"
                 >
                   견적서가 없습니다.
                 </td>
@@ -171,7 +171,7 @@ export default function InvoiceTable({
                       {invoice.견적서번호}
                     </td>
                     <td className="px-4 py-3">{invoice.클라이언트명}</td>
-                    <td className="px-4 py-3 text-zinc-500">
+                    <td className="px-4 py-3 text-zinc-500 dark:text-zinc-400">
                       {formatDate(invoice.발행일)}
                     </td>
                     <td className="px-4 py-3">

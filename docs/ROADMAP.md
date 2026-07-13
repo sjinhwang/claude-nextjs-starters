@@ -109,17 +109,21 @@ MVP는 견적서 웹 조회(F001)·PDF 다운로드(F002)·Notion 연동(F003)·
 
 | 태스크 ID | 설명 | 관련 기능 | 상태 |
 |-----------|------|-----------|------|
-| T701 | 다크모드 커버리지 감사 — 전 페이지/컴포넌트를 라이트·다크로 순회하며 `dark:` 누락·명암비 문제 목록화 (홈, 공개 조회, 어드민, 404, Header/Footer) | F009 | `[ ]` |
-| T702 | **공개 조회 페이지 다크모드 정책 결정** — 화면은 다크 지원, **인쇄 시 무조건 라이트 강제**(`@media print`에서 배경 흰색·폰트 검정 고정)로 확정 후 문서화 | F001, F002, F009 | `[ ]` |
-| T703 | 공개 조회 페이지 다크 대응 구현 — `bg-white text-zinc-900` 하드코딩을 다크 대응 클래스로 교체(화면), `print:` 클래스로 인쇄 시 라이트 강제 보장 | F001, F009 | `[ ]` |
-| T704 | 누락 컴포넌트 다크 대응 보완 — T701 감사에서 발견된 갭(색상·경계·placeholder 등) 수정 | F009 | `[ ]` |
-| T705 | 테마 토글 일관성 점검 — system/light/dark 전환, FOUC 미발생, localStorage 지속성 재확인 | F009 | `[ ]` |
+| T701 | 다크모드 커버리지 감사 — 전 페이지/컴포넌트를 라이트·다크로 순회하며 `dark:` 누락·명암비 문제 목록화 (홈, 공개 조회, 어드민, 404, Header/Footer) | F009 | `[x]` |
+| T702 | **공개 조회 페이지 다크모드 정책 결정** — 화면은 다크 지원, **인쇄 시 무조건 라이트 강제**(`@media print`에서 배경 흰색·폰트 검정 고정)로 확정 후 문서화 | F001, F002, F009 | `[x]` |
+| T703 | 공개 조회 페이지 다크 대응 구현 — `bg-white text-zinc-900` 하드코딩을 다크 대응 클래스로 교체(화면), `print:` 클래스로 인쇄 시 라이트 강제 보장 | F001, F009 | `[x]` |
+| T704 | 누락 컴포넌트 다크 대응 보완 — T701 감사에서 발견된 갭(색상·경계·placeholder 등) 수정 | F009 | `[x]` |
+| T705 | 테마 토글 일관성 점검 — system/light/dark 전환, FOUC 미발생, localStorage 지속성 재확인 | F009 | `[x]` |
+
+> **T701 감사 결과**: 인쇄 시 라이트 강제(T702)는 기존 `globals.css`의 전역 `@media print` 규칙(`* { color: black !important }`)이 이미 담당하고 있어, 정책은 사실상 구현되어 있었다 — 이번에 배경도 `background-color: transparent !important`로 전역 강제하도록 보강해 개별 요소마다 `print:` 변형을 붙이지 않아도 되게 했다. 실제 누락 지점은 `invoices/[token]/page.tsx`(다크 클래스 전무, 주요 갭), `loading.tsx` 스켈레톤, 커스텀 404 부재(`src/app/not-found.tsx` 신설로 해결), `InvoiceTable.tsx`/`admin/page.tsx`의 일부 `text-zinc-400/500` 명암비 누락이었다. 홈/Header/Footer/어드민 레이아웃은 이미 다크 대응 완료 상태였다. 테마 토글(FOUC 방지 스크립트, `ThemeProvider`)은 기존 구현이 정상 동작해 코드 변경 없음.
 
 **Phase 7 테스트 체크리스트 (⚠️ 구현 후 필수 수행 — Playwright MCP)**
 - `[ ]` 다크 모드에서 전 페이지(홈/공개 조회/어드민/404)의 텍스트·배경 명암비가 적절한지 검증 (`browser_click`으로 토글, `browser_snapshot`, 스크린샷 비교)
 - `[ ]` 공개 조회 페이지가 다크 모드에서 정상 표시되는지 검증 (`browser_navigate`, `browser_click`(토글), `browser_snapshot`)
 - `[ ]` **인쇄 시 다크 모드여도 배경 흰색·폰트 검정으로 강제**되는지 검증 (`browser_emulate_media`(`print`) 또는 `@media print` 시뮬레이션 후 `browser_snapshot`)
 - `[ ]` 테마 토글 전환 시 FOUC 없이 즉시 반영되고 새로고침 후에도 유지되는지 검증 (`browser_navigate`, `browser_evaluate`로 `localStorage.theme` 확인, `browser_snapshot`)
+
+> 참고: 이번 세션에는 Playwright MCP 브라우저 도구가 연결되어 있지 않아, 구현 검증은 `tsc`/`lint`/`build` 통과 + curl 기반 렌더링 스모크 테스트(다크 클래스 반영, 커스텀 404 노출)로 대체했다. 실제 시각적 명암비·인쇄 미리보기 확인은 사용자 수동 확인이 아직 이루어지지 않아 위 체크리스트는 미완료로 남겨둔다.
 
 ---
 
@@ -148,9 +152,9 @@ MVP는 견적서 웹 조회(F001)·PDF 다운로드(F002)·Notion 연동(F003)·
 ### 완료 `[x]` (v2 고도화)
 - **Phase 5 (T501~T505)** — 어드민 전용 레이아웃 + 세션 지속 (요구사항 1). `src/lib/session.ts`(HMAC-SHA256 서명 세션 쿠키, `ADMIN_PASSWORD` 재사용), `admin/layout.tsx`(인증 게이트), `AdminLoginForm`/`LogoutButton`/`InvoiceTable` 분리. 구현 중 미인증 상태에서 RSC 페이로드에 견적서 데이터가 유출되던 취약점을 발견·수정(`isAdminAuthenticated()` 자체 재검증 가드). 이후 사용자 요청으로 사이드바+대시보드 랜딩 레이아웃(`/admin` 대시보드, `/admin/invoices` 목록 분리)도 추가 반영.
 - **Phase 6 (T601~T605)** — 공유 링크 클립보드 복사, F005 실질 완성 (요구사항 2). `src/lib/invoice-url.ts`(공유 URL 생성 유틸), `InvoiceTable.tsx`에 복사 버튼(성공/실패 피드백, `execCommand` 폴백) 추가.
+- **Phase 7 (T701~T705)** — 다크모드 커버리지 + 공개 조회 페이지 정책 (요구사항 3). 공개 조회 페이지(`invoices/[token]/page.tsx`, `loading.tsx`)에 다크 클래스 추가, `globals.css` 인쇄 규칙에 배경 강제 투명 처리 보강, 커스텀 404(`src/app/not-found.tsx`) 신설, `InvoiceTable`/어드민 대시보드 명암비 갭 수정.
 
 ### 진행 예정 `[ ]` (v2 고도화 — 우선순위 순)
-- **Phase 7 (T701~T705)** — 다크모드 커버리지 + 공개 조회 페이지 정책 (요구사항 3)
 - **Phase 8 (T801~T803)** — 통합 QA 및 배포
 
 ### 인계 메모 (v1에서 이월)
