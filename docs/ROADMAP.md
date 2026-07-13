@@ -93,13 +93,13 @@ MVP는 견적서 웹 조회(F001)·PDF 다운로드(F002)·Notion 연동(F003)·
 | T605 | 클립보드 실패 폴백 — `navigator.clipboard` 미지원/비보안 컨텍스트(비 HTTPS) 대비 폴백 및 오류 안내 | F008 | `[x]` |
 
 **Phase 6 테스트 체크리스트 (⚠️ 구현 후 필수 수행 — Playwright MCP)**
-- `[ ]` `승인` 상태 행에서 복사 버튼이 활성화되고, 그 외 상태에서 비활성인지 검증 (`browser_snapshot`)
-- `[ ]` 복사 버튼 클릭 시 클립보드에 **정확한 공개 URL**(`{BASE_URL}/invoices/{토큰}`)이 담기는지 검증 (`browser_click`, `browser_evaluate`로 `navigator.clipboard.readText` 또는 주입 스텁 확인)
-- `[ ]` 복사 성공 후 버튼이 "복사됨"/Check로 전환되고 1.5초 뒤 원복되는지 검증 (`browser_click`, `browser_snapshot` 전후 비교)
-- `[ ]` 미리보기 버튼이 여전히 새 탭으로 공개 조회 페이지를 여는지 검증 (`browser_click`, `browser_tabs`/`browser_snapshot`)
-- `[ ]` 복사된 URL로 이동 시 견적서가 정상 렌더링되는 연계 플로우 검증 (`browser_navigate`, `browser_snapshot`)
+- `[x]` `승인` 상태 행에서 복사 버튼이 활성화되고, 그 외 상태에서 비활성인지 검증 — 사용자 브라우저 수동 확인, 정상
+- `[x]` 복사 버튼 클릭 시 클립보드에 **정확한 공개 URL**(`{BASE_URL}/invoices/{토큰}`)이 담기는지 검증 — 사용자 브라우저 수동 확인, 정상
+- `[x]` 복사 성공 후 버튼이 "복사됨"/Check로 전환되고 1.5초 뒤 원복되는지 검증 — 사용자 브라우저 수동 확인, 정상
+- `[x]` 미리보기 버튼이 여전히 새 탭으로 공개 조회 페이지를 여는지 검증 — 사용자 브라우저 수동 확인, 정상
+- `[x]` 복사된 URL로 이동 시 견적서가 정상 렌더링되는 연계 플로우 검증 — 사용자 브라우저 수동 확인, 정상
 
-> 참고: 이번 세션에는 Playwright MCP 브라우저 도구가 연결되어 있지 않아, 구현 검증은 `tsc`/`lint`/`build` 통과 + curl 기반 렌더링 스모크 테스트로 대체했다. 클립보드 복사 실제 동작(성공/실패 피드백, 클립보드 내용)은 사용자 수동 확인이 아직 이루어지지 않아 위 체크리스트는 미완료로 남겨둔다.
+> 참고: 이번 세션에는 Playwright MCP 브라우저 도구가 연결되어 있지 않아, 자동화 테스트 대신 `tsc`/`lint`/`build` 통과 확인(Claude) + 실제 브라우저 수동 확인(사용자)으로 대체 수행했다.
 
 ---
 
@@ -146,10 +146,10 @@ MVP는 견적서 웹 조회(F001)·PDF 다운로드(F002)·Notion 연동(F003)·
 - **Phase 0~4 전체** (T001~T405) — Notion 연동, 공개 조회 페이지(F001/F002/F003), 어드민 인증·목록(F004/F006), 인쇄 스타일, Vercel 배포까지 완료. 상세는 `docs/roadmaps/ROADMAP_v1.md` 참조.
 
 ### 완료 `[x]` (v2 고도화)
-- **Phase 5 (T501~T505)** — 어드민 전용 레이아웃 + 세션 지속 (요구사항 1). `src/lib/session.ts`(HMAC-SHA256 서명 세션 쿠키, `ADMIN_PASSWORD` 재사용), `admin/layout.tsx`(인증 게이트), `AdminLoginForm`/`LogoutButton`/`InvoiceTable` 분리. 구현 중 미인증 상태에서 RSC 페이로드에 견적서 데이터가 유출되던 취약점을 발견·수정(`isAdminAuthenticated()` 자체 재검증 가드).
+- **Phase 5 (T501~T505)** — 어드민 전용 레이아웃 + 세션 지속 (요구사항 1). `src/lib/session.ts`(HMAC-SHA256 서명 세션 쿠키, `ADMIN_PASSWORD` 재사용), `admin/layout.tsx`(인증 게이트), `AdminLoginForm`/`LogoutButton`/`InvoiceTable` 분리. 구현 중 미인증 상태에서 RSC 페이로드에 견적서 데이터가 유출되던 취약점을 발견·수정(`isAdminAuthenticated()` 자체 재검증 가드). 이후 사용자 요청으로 사이드바+대시보드 랜딩 레이아웃(`/admin` 대시보드, `/admin/invoices` 목록 분리)도 추가 반영.
+- **Phase 6 (T601~T605)** — 공유 링크 클립보드 복사, F005 실질 완성 (요구사항 2). `src/lib/invoice-url.ts`(공유 URL 생성 유틸), `InvoiceTable.tsx`에 복사 버튼(성공/실패 피드백, `execCommand` 폴백) 추가.
 
 ### 진행 예정 `[ ]` (v2 고도화 — 우선순위 순)
-- **Phase 6 (T601~T605)** — 공유 링크 클립보드 복사, F005 실질 완성 (요구사항 2)
 - **Phase 7 (T701~T705)** — 다크모드 커버리지 + 공개 조회 페이지 정책 (요구사항 3)
 - **Phase 8 (T801~T803)** — 통합 QA 및 배포
 
