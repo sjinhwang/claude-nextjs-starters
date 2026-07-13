@@ -86,11 +86,11 @@ MVP는 견적서 웹 조회(F001)·PDF 다운로드(F002)·Notion 연동(F003)·
 
 | 태스크 ID | 설명 | 관련 기능 | 상태 |
 |-----------|------|-----------|------|
-| T601 | 공유 URL 생성 유틸 정리 — `NEXT_PUBLIC_BASE_URL`(폴백 `window.location.origin`) + `/invoices/{공유토큰}` 조합 함수화 | F005, F008 | `[ ]` |
-| T602 | 클립보드 복사 버튼 추가 — 목록 각 행에 Copy 버튼 신설, **미리보기 버튼은 유지**(두 버튼 병행). `navigator.clipboard.writeText` 사용 | F005, F008 | `[ ]` |
-| T603 | 복사 활성 조건 — 상태가 `승인`이고 공유토큰이 있는 경우에만 활성화(초안/대기/거절은 비활성), 기존 `canCopy` 로직 재사용 | F005, F008 | `[ ]` |
-| T604 | 복사 성공 피드백 — 클릭 시 Copy → Check 아이콘/"복사됨" 텍스트로 1.5초 전환 후 원복 (PRD UI/UX 요구사항) | F005, F008 | `[ ]` |
-| T605 | 클립보드 실패 폴백 — `navigator.clipboard` 미지원/비보안 컨텍스트(비 HTTPS) 대비 폴백 및 오류 안내 | F008 | `[ ]` |
+| T601 | 공유 URL 생성 유틸 정리 — `NEXT_PUBLIC_BASE_URL`(폴백 `window.location.origin`) + `/invoices/{공유토큰}` 조합 함수화 | F005, F008 | `[x]` |
+| T602 | 클립보드 복사 버튼 추가 — 목록 각 행에 Copy 버튼 신설, **미리보기 버튼은 유지**(두 버튼 병행). `navigator.clipboard.writeText` 사용 | F005, F008 | `[x]` |
+| T603 | 복사 활성 조건 — 상태가 `승인`이고 공유토큰이 있는 경우에만 활성화(초안/대기/거절은 비활성), 기존 `canCopy` 로직 재사용 | F005, F008 | `[x]` |
+| T604 | 복사 성공 피드백 — 클릭 시 Copy → Check 아이콘/"복사됨" 텍스트로 1.5초 전환 후 원복 (PRD UI/UX 요구사항) | F005, F008 | `[x]` |
+| T605 | 클립보드 실패 폴백 — `navigator.clipboard` 미지원/비보안 컨텍스트(비 HTTPS) 대비 폴백 및 오류 안내 | F008 | `[x]` |
 
 **Phase 6 테스트 체크리스트 (⚠️ 구현 후 필수 수행 — Playwright MCP)**
 - `[ ]` `승인` 상태 행에서 복사 버튼이 활성화되고, 그 외 상태에서 비활성인지 검증 (`browser_snapshot`)
@@ -98,6 +98,8 @@ MVP는 견적서 웹 조회(F001)·PDF 다운로드(F002)·Notion 연동(F003)·
 - `[ ]` 복사 성공 후 버튼이 "복사됨"/Check로 전환되고 1.5초 뒤 원복되는지 검증 (`browser_click`, `browser_snapshot` 전후 비교)
 - `[ ]` 미리보기 버튼이 여전히 새 탭으로 공개 조회 페이지를 여는지 검증 (`browser_click`, `browser_tabs`/`browser_snapshot`)
 - `[ ]` 복사된 URL로 이동 시 견적서가 정상 렌더링되는 연계 플로우 검증 (`browser_navigate`, `browser_snapshot`)
+
+> 참고: 이번 세션에는 Playwright MCP 브라우저 도구가 연결되어 있지 않아, 구현 검증은 `tsc`/`lint`/`build` 통과 + curl 기반 렌더링 스모크 테스트로 대체했다. 클립보드 복사 실제 동작(성공/실패 피드백, 클립보드 내용)은 사용자 수동 확인이 아직 이루어지지 않아 위 체크리스트는 미완료로 남겨둔다.
 
 ---
 
