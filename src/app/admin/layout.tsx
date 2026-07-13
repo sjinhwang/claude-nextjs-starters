@@ -4,6 +4,7 @@ import AdminLoginForm from "./AdminLoginForm";
 import LogoutButton from "./LogoutButton";
 import AdminSidebar from "./AdminSidebar";
 import Container from "@/components/layout/Container";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
 /**
  * 어드민 레이아웃 — 서버에서 세션 쿠키를 검증해 인증 게이트 역할을 한다.
@@ -23,7 +24,10 @@ export default async function AdminLayout({
   // page.tsx가 isAdminAuthenticated()로 자체 재확인하는 방식으로 보장한다.
   if (!isAuthenticated) {
     return (
-      <section className="flex flex-1 items-center justify-center py-24">
+      <section className="relative flex flex-1 items-center justify-center py-24">
+        <div className="absolute top-4 right-4">
+          <ThemeToggle />
+        </div>
         <Container className="max-w-sm">
           <AdminLoginForm />
         </Container>
@@ -43,7 +47,10 @@ export default async function AdminLayout({
             견적서 관리 시스템
           </span>
         </div>
-        <LogoutButton />
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <LogoutButton />
+        </div>
       </header>
       <div className="flex flex-1">
         <AdminSidebar />
