@@ -1,8 +1,13 @@
 "use server";
 
-import { headers } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { getAllInvoices } from "@/lib/notion";
 import { RATE_LIMIT_ERROR_MESSAGE } from "@/lib/rate-limit";
+import {
+  createSessionToken,
+  SESSION_COOKIE_NAME,
+  SESSION_MAX_AGE_SECONDS,
+} from "@/lib/session";
 import type { Invoice } from "@/types/invoice";
 
 // ─── Rate Limiting (F006 브루트포스 비밀번호 대입 방지) ──────────────────────────
@@ -54,12 +59,37 @@ function checkRateLimit(ip: string): boolean {
   return true;
 }
 
-export async function validateAdminPassword(password: string): Promise<boolean> {
+/**
+ * 어드민 비밀번호 로그인 처리.
+ * throw 대신 결과 객체를 반환하여 클라이언트(AdminLoginForm)의 분기 처리를 단순화한다.
+ */
+export async function login(
+  password: string
+): Promise<{ success: boolean; error?: string }> {
   const ip = await getClientIp();
   if (!checkRateLimit(ip)) {
-    throw new Error(RATE_LIMIT_ERROR_MESSAGE);
+    return { success: false, error: RATE_LIMIT_ERROR_MESSAGE };
   }
-  return password === process.env.ADMIN_PASSWORD;
+
+  if (password !== process.env.ADMIN_PASSWORD) {
+    return { success: false, error: "INVALID_PASSWORD" };
+  }
+
+  (await cookies()).set(SESSION_COOKIE_NAME, createSessionToken(), {
+    httpOnly: true,
+    sameSite: "lax",
+    secure: process.env.NODE_ENV === "production",
+    path: "/admin",
+    maxAge: SESSION_MAX_AGE_SECONDS,
+  });
+
+  return { success: true };
+}
+
+/** 어드민 로그아웃 — 세션 쿠키를 제거한다. */
+export async function logout(): Promise<void> {
+  // set과 동일한 path를 지정해야 삭제가 반영된다 (next/headers cookies delete 제약).
+  (await cookies()).delete({ name: SESSION_COOKIE_NAME, path: "/admin" });
 }
 
 export async function fetchAllInvoices(): Promise<Omit<Invoice, "항목">[]> {

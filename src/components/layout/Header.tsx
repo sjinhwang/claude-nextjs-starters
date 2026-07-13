@@ -14,6 +14,11 @@ export default function Header() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  // 어드민 영역은 자체 헤더(admin/layout.tsx)를 사용하므로 공통 헤더를 숨긴다.
+  if (pathname.startsWith("/admin")) {
+    return null;
+  }
+
   return (
     <header className="sticky top-0 z-50 border-b border-zinc-200 bg-white/80 backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-950/80">
       <Container className="flex h-14 items-center justify-between">
