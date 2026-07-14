@@ -316,7 +316,7 @@ export default function InvoiceTable({
       )}
 
       <div className="overflow-x-auto rounded-lg border border-zinc-200 dark:border-zinc-800">
-        <table className="w-full min-w-[640px] text-sm">
+        <table className="w-full min-w-[760px] text-sm">
           <thead className="bg-zinc-50 dark:bg-zinc-900">
             <tr className="border-b border-zinc-200 dark:border-zinc-800 text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
               <SortableHeader
@@ -341,7 +341,7 @@ export default function InvoiceTable({
                 sortDirection={sortDirection}
                 onSort={handleSort}
               />
-              <th className="px-4 py-3 text-right">작업</th>
+              <th className="px-4 py-3 text-right">링크</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-zinc-100 dark:divide-zinc-800">
@@ -375,6 +375,9 @@ export default function InvoiceTable({
                 const config = STATUS_CONFIG[invoice.상태];
                 const canCopy =
                   invoice.상태 === "승인" && !!invoice.공유토큰;
+                const shareUrl = canCopy
+                  ? buildInvoiceShareUrl(invoice.공유토큰)
+                  : null;
 
                 return (
                   <tr
@@ -395,39 +398,53 @@ export default function InvoiceTable({
                     </td>
                     <td className="px-4 py-3 text-right">
                       <div className="flex items-center justify-end gap-2">
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          disabled={!canCopy}
-                          onClick={() => canCopy && handlePreview(invoice)}
-                        >
-                          <Eye />
-                          미리보기
-                        </Button>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          disabled={!canCopy}
-                          onClick={() => canCopy && handleCopy(invoice)}
-                        >
-                          {copyFeedback?.id === invoice.id &&
-                          copyFeedback.status === "error" ? (
-                            <span className="text-red-600 dark:text-red-400">
-                              복사 실패
-                            </span>
-                          ) : copyFeedback?.id === invoice.id &&
-                            copyFeedback.status === "success" ? (
-                            <>
-                              <Check />
-                              복사됨
-                            </>
-                          ) : (
-                            <>
-                              <Copy />
-                              복사
-                            </>
-                          )}
-                        </Button>
+                        {shareUrl ? (
+                          <span
+                            className="max-w-[220px] truncate font-mono text-xs text-zinc-500 dark:text-zinc-400"
+                            title={shareUrl}
+                          >
+                            {shareUrl}
+                          </span>
+                        ) : (
+                          <span className="text-xs text-zinc-400 dark:text-zinc-600">
+                            발행 전
+                          </span>
+                        )}
+                        <div className="flex shrink-0 items-center gap-2">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            disabled={!canCopy}
+                            onClick={() => canCopy && handlePreview(invoice)}
+                          >
+                            <Eye />
+                            미리보기
+                          </Button>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            disabled={!canCopy}
+                            onClick={() => canCopy && handleCopy(invoice)}
+                          >
+                            {copyFeedback?.id === invoice.id &&
+                            copyFeedback.status === "error" ? (
+                              <span className="text-red-600 dark:text-red-400">
+                                복사 실패
+                              </span>
+                            ) : copyFeedback?.id === invoice.id &&
+                              copyFeedback.status === "success" ? (
+                              <>
+                                <Check />
+                                복사됨
+                              </>
+                            ) : (
+                              <>
+                                <Copy />
+                                복사
+                              </>
+                            )}
+                          </Button>
+                        </div>
                       </div>
                     </td>
                   </tr>
