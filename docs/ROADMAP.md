@@ -154,12 +154,14 @@ MVP는 견적서 웹 조회(F001)·PDF 다운로드(F002)·Notion 연동(F003)·
 |-----------|------|-----------|------|
 | T1201 | E2E 통합 테스트 — 어드민 로그인 → 목록 검색/필터/정렬 → 링크 컬럼 확인 → 복사/이메일/메신저 공유 → 공개 조회(OG 확인) 전체 플로우, 라이트/다크 양쪽 | F010~F012 | `[x]` |
 | T1202 | 반응형/접근성 재점검 — 목록 필터 바·링크 컬럼·공유 메뉴 모바일 뷰포트, 키보드 포커스/`mark` 명암비 | F010, F011, F012 | `[x]` |
-| T1203 | 프로덕션 배포 및 스모크 테스트 — Vercel(GitHub 연동 자동 배포) 반영 후 실 도메인에서 검색·링크·공유·OG 미리보기 재확인 | F010~F012 | `[ ]` |
+| T1203 | 프로덕션 배포 및 스모크 테스트 — Vercel(GitHub 연동 자동 배포) 반영 후 실 도메인에서 검색·링크·공유·OG 미리보기 재확인 | F010~F012 | `[x]` |
 
 **Phase 12 테스트 체크리스트 (⚠️ 구현 후 필수 수행 — Playwright MCP)**
 - `[x]` 로그인 → 검색/필터 → 링크 복사/공유 → 공개 조회 전체 플로우가 라이트/다크에서 모두 동작하는지 검증 (`browser_navigate`, `browser_fill_form`, `browser_click`, `browser_snapshot`) — 세션 유지 로그인 확인, 검색 하이라이팅·상태 필터(빈 상태 포함)·정렬·링크 컬럼·공유 메뉴(복사 클립보드 값·이메일·텔레그램 새 탭 도메인) 라이트/다크 모두 정상, 콘솔 오류 0건
 - `[x]` 모바일/데스크톱 뷰포트별 필터 바·링크 컬럼·공유 메뉴 렌더링 검증 (`browser_resize`, `browser_snapshot`) — 375px에서 필터 바 스택, 테이블 가로 스크롤, 공유 메뉴 정상 렌더 확인
-- `[ ]` 프로덕션(HTTPS)에서 공유 링크와 OG 미리보기 메타데이터가 정상 노출되는지 검증 (`browser_navigate`, `browser_network_requests`, `browser_evaluate`) — T1203 배포 후 수행 예정
+- `[x]` 프로덕션(HTTPS)에서 공유 링크와 OG 미리보기 메타데이터가 정상 노출되는지 검증 (`browser_navigate`, `browser_network_requests`, `browser_evaluate`) — `https://claude-nextjs-starters-lake.vercel.app`에 배포(commit a649eb9) 후 `curl`로 승인/비승인 OG·Twitter 메타(도메인이 프로덕션 HTTPS로 정확히 치환됨)·OG 이미지(1200×630 PNG, 200) 확인, Playwright로 공개 조회 페이지 렌더·콘솔 오류 0건 확인
+
+> **T1203 배포 메모**: Vercel CLI(`vercel project ls`/`vercel ls`)로 프로덕션 배포가 push 직후 정상 Ready 상태임을 확인(별도 수동 `vercel --prod` 실행 없이 GitHub 연동 자동 배포만 사용). 발행인 정보(`NEXT_PUBLIC_ISSUER_NAME` 등)가 프로덕션 환경변수에 아직 미설정이라 "발행인 회사명" 플레이스홀더가 그대로 노출됨 — 기존 인계 메모 항목, Vercel 대시보드에서 환경변수 설정 필요(에이전트가 직접 변경 불가).
 
 > **T1202 추가 확인**: 공유 메뉴 키보드 내비게이션(Tab→Enter로 열기, ArrowDown 이동, Escape로 닫기) 시 포커스 링이 명확히 표시됨. 검색어 하이라이팅(`mark`)은 라이트(검정 텍스트/노란 배경)·다크(밝은 텍스트/어두운 노란 배경) 모두 시각적으로 명확히 구분됨.
 
@@ -206,14 +208,15 @@ Notion 스키마에 조회수/카운터 필드가 없어 저장 위치를 먼저
 - **Phase 9 (T901~T908)** — 견적서 목록 고급 조회(F010). `InvoiceTable.tsx`에 검색/상태 필터/날짜 범위 필터/정렬/페이지네이션/하이라이팅/빈 상태를 `useMemo` 파생 파이프라인(필터→정렬→페이지네이션)으로 구현하고, 순수 로직은 `invoice-table-utils.ts`로, 필터 UI는 `InvoiceFilterBar.tsx`로 분리. 실 Notion DB 레코드가 1건뿐이라 정렬/필터 순서 검증은 Playwright UI 조작(검색·상태·날짜·정렬 토글·빈 상태·초기화·라이트/다크 하이라이팅)과 별도로 합성 다중 데이터로 실제 유틸 함수를 직접 import해 14개 케이스를 교차 검증함. lint/tsc/build 모두 통과.
 - **Phase 10 필수 태스크 (T1001~T1003)** — 고유 링크 생성 및 표시(F011). 기존 "작업" 컬럼을 "링크" 컬럼으로 대체해 공개 URL 텍스트(말줄임)와 기존 미리보기/복사 버튼을 한 셀에 통합, `canCopy` 조건 그대로 재사용해 비승인 행엔 "발행 전" 안내 표시, 테이블 `min-w`를 760px로 소폭 상향. 새 파일/의존성 없이 `InvoiceTable.tsx` 단일 파일만 수정. lint/tsc/build 통과, Playwright로 링크 텍스트·복사(클립보드 값 확인)·라이트/다크·모바일 가로 스크롤 확인. T1051(QR)/T1052(짧은 URL) 선택 확장은 미착수.
 - **Phase 11 (T1101~T1105)** — 링크 공유 통합(F012). 기존 "복사" 단독 버튼을 `radix-ui` `DropdownMenu`(`src/components/ui/DropdownMenu.tsx` 신규 래퍼) 기반 "공유" 메뉴로 교체(미리보기 버튼은 그대로 유지). 메뉴 항목: 복사(기존 피드백 유지, `onSelect` preventDefault로 메뉴 유지)/이메일(`mailto:`)/텔레그램/`navigator.share`(마운트 후에만 노출, `useSyncExternalStore`로 hydration mismatch 방지). URL 빌더는 `invoice-url.ts`에 추가(`buildInvoiceMailtoUrl`, `buildInvoiceTelegramShareUrl`). 공개 조회 페이지에 `generateMetadata` 추가 — 상태 판별을 `isPubliclyViewable()` 하나로 통일해 메타데이터·본문 양쪽에 동일 가드 적용, 비승인/없는 토큰은 식별정보 없는 폴백 메타 반환. `getInvoiceByToken`을 React `cache()`로 추가 래핑해 같은 요청 내 중복 Notion 호출 제거(Next.js 공식 문서 패턴). `opengraph-image.tsx` 신규 — 데이터 비의존 고정 placeholder로 최소 구현(신규 npm 의존성 없음). lint/tsc/build 통과, Playwright로 공유 메뉴 라이트/다크 동작 확인, `curl`로 승인/비승인 메타데이터 및 OG 이미지(1200x630 PNG) 검증.
+- **Phase 12 (T1201~T1203)** — 통합 QA 및 배포(F010~F012). Playwright MCP로 어드민 로그인(세션 유지)→검색·필터·정렬→링크 컬럼→공유 메뉴(복사/이메일/텔레그램)→공개 조회 OG 전체 플로우를 라이트/다크에서 검증, 모바일(375px) 뷰포트·키보드 포커스·`mark` 명암비 재점검(콘솔 오류 0건). `docs/ROADMAP.md` 갱신 커밋을 push해 Vercel GitHub 연동 자동 배포 트리거, `vercel project ls`/`vercel ls`로 배포 Ready 상태 확인 후 `https://claude-nextjs-starters-lake.vercel.app`에서 홈/공개 조회/OG 메타데이터·OG 이미지·콘솔 오류를 스모크 테스트. v3(F010~F012) 필수 스코프 전체 완료.
 
-### 진행 예정 `[ ]` (v3)
+### 진행 예정 `[ ]` (v3 이후 — 선택/결정 필요)
 - **Phase 10 선택 확장 (T1051~T1052)** — 결정 필요 항목(D2, D3) 확정 시 별도 승인 후 착수
-- **Phase 12 (T1201~T1203)** — 통합 QA 및 배포
+- 결정 필요 항목(D1~D4) 확정 후 선택 확장·통계 태스크 편입
 
 ### 다음 작업 (우선순위)
-1. **Phase 12 (T1201~T1203)** — v3 전체 통합 QA 및 배포.
-2. 결정 필요 항목(D1~D4) 확정 후 선택 확장·통계 태스크 편입.
+1. v3(Phase 9~12) 필수 스코프 완료 — 추가 작업은 사용자 요청 또는 결정 필요 항목(D1~D4) 확정 대기.
+2. (선택) 프로덕션 환경변수 `NEXT_PUBLIC_ISSUER_NAME/CONTACT/ADDRESS`를 Vercel 대시보드에서 설정해 공개 조회 페이지·OG 메타데이터의 발행인 플레이스홀더 해소.
 
 ### 인계 메모 (v1/v2에서 이월)
 - 발행인 정보 환경변수(`NEXT_PUBLIC_ISSUER_NAME/CONTACT/ADDRESS`) 프로덕션 값 미설정 — 현재 placeholder 표시 중. OG 메타데이터(T1104)에 발행인명을 쓸 예정이므로 이번 배포 시 함께 반영 권장.
