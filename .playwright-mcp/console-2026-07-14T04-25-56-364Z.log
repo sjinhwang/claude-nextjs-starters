@@ -1,0 +1,179 @@
+[   26724ms] [LOG] %c
+▲
+
+    ____                               _ __
+   / __ \________  ____ _____ ___     (_) /_
+  / / / / ___/ _ \/ __ `/ __ `__ \   / / __/
+ / /_/ / /  /  __/ /_/ / / / / / /  / / /__
+/_____/_/   \___/\__,_/_/ /_/ /_/  /_/\__( )
+   _____ __    _          _ __           |/
+  / ___// /_  (_)___     (_) /_
+  \__ \/ __ \/ / __ \   / / __/
+ ___/ / / / / / /_/ /  / / /_
+/____/_/ /_/_/ .___/  /_/\__/
+            /_/
+  
+
+Hello!
+
+- Open Source https://vercel.com/oss
+- Careers https://vercel.com/careers
+- Status https://vercel-status.com
+
+ font-family: "Geist Mono", monospace; white-space: pre; line-height: 1; @ https://vercel.com/vc-ap-vercel-marketing/_next/static/immutable/chunks/2nedn-5mmitix.js:78
+[   26891ms] [ERROR] Loading the image 'https://py8fhxnkzwtsqdo9.public.blob.vercel-storage.com/front/favicon/vercel/android-chrome-192x192.png' violates the following Content Security Policy directive: "img-src 'self' blob: data: *.github.io avatars.githubusercontent.com user-images.githubusercontent.com vercel.com vercel.live *.vercel.sh assets.vercel.com cdn.raster.app https://images.ctfassets.net https://www.google.com https://i.ytimg.com https://s3.amazonaws.com pbs.twimg.com https://www.gravatar.com https://lishhsx6kmthaacj.public.blob.vercel-storage.com https://fvqcrhkhgatlyl2m.public.blob.vercel-storage.com". The action has been blocked. @ https://vercel.com/:0
+[   26907ms] [WARNING] Error while trying to use the following icon from the Manifest: https://py8fhxnkzwtsqdo9.public.blob.vercel-storage.com/front/favicon/vercel/android-chrome-192x192.png (Download error or resource isn't a valid image) @ https://vercel.com/:0
+[   27471ms] [WARNING] Deprecated API for given entry type. @ https://vercel.com/vc-ap-vercel-marketing/_next/static/immutable/chunks/2zqynokxqbefq.js:18
+[   27516ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://vercel.com/api/jwt:0
+[   27625ms] [ERROR] Failed to load resource: the server responded with a status of 429 () @ https://o205439.ingest.us.sentry.io/api/4507726617772032/envelope/?sentry_key=285c77642188feae6e662bd2903e2d52&sentry_version=7&sentry_client=sentry.javascript.browser%2F7.111.0:0
+[   61280ms] [LOG] %c
+▲
+
+__  __                                     _            __
+\ \/ /___  __  __   _________ _____       (_)_  _______/ /_
+ \  / __ \/ / / /  / ___/ __ `/ __ \     / / / / / ___/ __/
+ / / /_/ / /_/ /  / /__/ /_/ / / / /    / / /_/ (__  ) /_
+/_/\____/\__,_/   \___/\__,_/_/ /_/  __/ /\__,_/____/\__/
+         __    _          __  __    /___/
+   _____/ /_  (_)___     / /_/ /_  (_)___  ____ ______
+  / ___/ __ \/ / __ \   / __/ __ \/ / __ \/ __ `/ ___/
+ (__  ) / / / / /_/ /  / /_/ / / / / / / / /_/ (__  )
+/____/_/ /_/_/ .___/   \__/_/ /_/_/_/ /_/\__, /____/
+            /_/                         /____/
+  
+
+Hello!
+
+- Open Source https://vercel.com/oss
+- Careers https://vercel.com/careers
+- Status https://vercel-status.com
+
+ font-family: "Geist Mono", monospace; white-space: pre; line-height: 1; @ https://vercel.com/_next/static/immutable/chunks/182s_fkvb5w04.js:78
+[   62193ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://vercel.com/api/jwt:0
+[   62218ms] [WARNING] [GSI_LOGGER]: Your client application uses one of the Google One Tap prompt UI status methods that may stop functioning when FedCM becomes mandatory. Refer to the migration guide to update your code accordingly and opt-in to FedCM to test your changes. Learn more: https://developers.google.com/identity/gsi/web/guides/fedcm-migration?s=dc#display_moment and https://developers.google.com/identity/gsi/web/guides/fedcm-migration?s=dc#skipped_moment @ https://accounts.google.com/gsi/client:86
+[   62241ms] [ERROR] Not signed in with the identity provider. @ https://vercel.com/login:0
+[   62709ms] [ERROR] [GSI_LOGGER]: FedCM get() rejects with NetworkError: Error retrieving a token. @ https://accounts.google.com/gsi/client:87
+[   62938ms] [WARNING] Deprecated API for given entry type. @ https://vercel.com/_next/static/immutable/chunks/3sr_g235pli9w.js:18
+[   65483ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ https://accounts.google.com/v3/signin/identifier?opparams=%253F&dsh=S-519606493%3A1784003221179214&client_id=258013614557-nema0dumfbottebi6to7aqi85qot9pvs.apps.googleusercontent.com&o2v=2&redirect_uri=https%3A%2F%2Fvercel.com%2Fapi%2Fregistration%2Fgoogle%2Fcallback&response_type=code&scope=openid+profile+email&service=lso&state=a4b5504b04ef84a4a93951ab0050baa1b005a42a8daa8e1c10b3b13bbfcd0d8e5b31c415c6fbf1fd09af8b651c7a557c48ea91174497ee86b1218f6234ebb5f9ad749af3a226b2f49afcdf464a57d05fd59a7fd85e725f772af600be3c2303cd9170f6eda7392a9c5f26fe7a33385bc1ee5b4e51d3fb033d70ff1a0a5c80e6a477905af96b859dbe93e487162d16beffbfa93ee78c1f04d437eb10bdfaeedeb32e6a9426e3eff010fdf0fab187f689d0e3b8da786d40a0705e4f4c387a1a698d7c8affdacd2133c811237af1ab1b7d858df995861b0dbb6d5549f14469a1c004035d8f207a3745185302d12522030fe5a6bd361ea0ed31c8cb84e7568a8c2bb4fc05c34f927774924004b0a056b4859eceaf7f38c83c8f7d21d7352724ed3cc0d0deeaf5d3f48fca65abd7&flowName=GeneralOAuthFlow&continue=https%3A%2F%2Faccounts.google.com%2Fsignin%2Foauth%2Fconsent%3Fauthuser%3Dunknown%26part%3DAJi8hAMJ_9egaR2stDdTf85xcWf5JIvGABw0D_l3W6mE8__vTF_pmzrJy4-yN7bXWqTYylmtqIoxvflhI2Zp0y1QtxdAan3Ba624z2_K2Yb8i-skXNQSi3Gv3TMtw0KZmBD34pc0AUy2B7O06QvjRgTK_Ukxqu2OGWkBbkX85CpybbNJkU_cm6hhOKg7nXj9YOyd-AUG81sz9J6GHf4J1fn52DdJxeqYldTsBfd3hD1IU-PwQbR5fG22174k2H2Y0qnqmJNH2jI2gCmi7qaVlAQEXF57pJedlcILRWTgzDg0KT0uoFQncf7wqcmT3N3oXG4yTtNXGbk4ECfTmBfgxz_aAEVqTpqwnr-iD5bdRQFIyXv9rrLpegYRAb9NZbfhF4QDHACqy-iv9CONQu_NU17i0RibWE8gbe8GJpWOqf3L2ml9ZhB9Fyc-ar7ENyI1JMc24fZhHUWI7Ks8ICe1LsB2-Q0G-V5Djw%26flowName%3DGeneralOAuthFlow%26as%3DS-519606493%253A1784003221179214%26client_id%3D258013614557-nema0dumfbottebi6to7aqi85qot9pvs.apps.googleusercontent.com%26requestPath%3D%252Fsignin%252Foauth%252Fconsent%23&app_domain=https%3A%2F%2Fvercel.com&rart=ANgoxcejIyclc4wuZQs-qQGnQRGz0JbI62d-gs0lyEHGrdHL93pWN7FtTneSItQ3YS8O0_B-qNOn67sOsGTybijEr3pA7wNCdD-sY4OKD3WVxksa9NYoqyA:0
+[   65507ms] [LOG] %c%s color: red; background: yellow; font-size: 24px; 경고! @ https://www.gstatic.com/_/mss/boq-identity/_/js/k=boq-identity.AccountsSignInUi.ko.ssmGCyRI-bg.es5.O/am=EQUAAAADRSECgPH__wMAEECQ7YDvWQBNgJABAAAAAAAAAACWAACoEQ/d=1/excm=_b,_tp,identifierview/ed=1/dg=0/wt=2/ujg=1/rs=AOaEmlHbq2R-biqLpVA-SFDOn2wE1BxLfw/dti=1/m=_b,_tp:550
+[   65507ms] [LOG] %c%s font-size: 18px; 이 콘솔을 사용하면 공격자가 Self-XSS라는 공격을 통해 내 신원을 도용하여 내 정보를 빼낼 수 있습니다.
+알지 못하는 코드를 입력하거나 붙여넣지 마세요. @ https://www.gstatic.com/_/mss/boq-identity/_/js/k=boq-identity.AccountsSignInUi.ko.ssmGCyRI-bg.es5.O/am=EQUAAAADRSECgPH__wMAEECQ7YDvWQBNgJABAAAAAAAAAACWAACoEQ/d=1/excm=_b,_tp,identifierview/ed=1/dg=0/wt=2/ujg=1/rs=AOaEmlHbq2R-biqLpVA-SFDOn2wE1BxLfw/dti=1/m=_b,_tp:550
+[   73975ms] [LOG] %c
+▲
+
+    ____                               _ __
+   / __ \________  ____ _____ ___     (_) /_
+  / / / / ___/ _ \/ __ `/ __ `__ \   / / __/
+ / /_/ / /  /  __/ /_/ / / / / / /  / / /__
+/_____/_/   \___/\__,_/_/ /_/ /_/  /_/\__( )
+   _____ __    _          _ __           |/
+  / ___// /_  (_)___     (_) /_
+  \__ \/ __ \/ / __ \   / / __/
+ ___/ / / / / / /_/ /  / / /_
+/____/_/ /_/_/ .___/  /_/\__/
+            /_/
+  
+
+Hello!
+
+- Open Source https://vercel.com/oss
+- Careers https://vercel.com/careers
+- Status https://vercel-status.com
+
+ font-family: "Geist Mono", monospace; white-space: pre; line-height: 1; @ https://vercel.com/_next/static/immutable/chunks/182s_fkvb5w04.js:78
+[   74667ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://vercel.com/api/jwt:0
+[   74689ms] [WARNING] [GSI_LOGGER]: Your client application uses one of the Google One Tap prompt UI status methods that may stop functioning when FedCM becomes mandatory. Refer to the migration guide to update your code accordingly and opt-in to FedCM to test your changes. Learn more: https://developers.google.com/identity/gsi/web/guides/fedcm-migration?s=dc#display_moment and https://developers.google.com/identity/gsi/web/guides/fedcm-migration?s=dc#skipped_moment @ https://accounts.google.com/gsi/client:86
+[   74695ms] [ERROR] Not signed in with the identity provider. @ https://vercel.com/login:0
+[   75319ms] [WARNING] Deprecated API for given entry type. @ https://vercel.com/_next/static/immutable/chunks/3sr_g235pli9w.js:18
+[   75443ms] [ERROR] [GSI_LOGGER]: FedCM get() rejects with NetworkError: Error retrieving a token. @ https://vercel.com/_next/static/immutable/chunks/0omhszvlhlbpn.js:8
+[   75498ms] [ERROR] Failed to load resource: the server responded with a status of 429 () @ https://o205439.ingest.sentry.io/api/1323670/envelope/?sentry_key=d00780d432ac4ccf882f60dd02062e14&sentry_version=7&sentry_client=sentry.javascript.browser%2F7.111.0:0
+[   82394ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ https://accounts.google.com/v3/signin/identifier?opparams=%253F&dsh=S103713417%3A1784003238280480&client_id=1078992815106-brpsupgvhheqg35tupphbh0qk9c32nq8.apps.googleusercontent.com&code_challenge=tJpzbZApcMsx2mgbVsc1QUh7rNDMYhmLKKt8cagm92M&code_challenge_method=S256&nonce=12888c5b179d067b2dea0a652bffbf81&o2v=2&prompt=select_account&redirect_uri=https%3A%2F%2Fgithub.com%2Fsessions%2Fsocial%2Fgoogle%2Fcallback&response_type=code&scope=openid+email+profile&service=lso&state=74921f46e701091488858f89de62c5e4&flowName=GeneralOAuthFlow&continue=https%3A%2F%2Faccounts.google.com%2Fsignin%2Foauth%2Fconsent%3Fauthuser%3Dunknown%26part%3DAJi8hANOvuHujLPtH9W7dya3qHeHJ0aM513bSGu_ar86B9sfO0ogN2u1fvMbdt06NTmIneRVLI-WRMnZdtCXuD-D59T4MDI1SuiG79ElGkQO6Txl5q4IcTzo-562P9B8Q001oIYUbW0JBZWhZ8VK-bZy5ZwKqG2yzURpkGVtTiGmaeI5bap5CKglq89dCPTvod0pKT0JqJr_Z0Lto_HFcm4GDC46cvUcYmCZsg_1KOkKfMwmC27evvF7YsTLlRF3kZbclJhfV1WnYj7mBsIo6D_Jut7UnZ81oSd0zDy478vUOu-wX37wzoLmYqCsQlQf88lqQKb5ocEE2IrKZk546sfcyUlqeKRWiQ9boVvaalOdV5Nze9EOBMiYLYZiS-aNfXjV8rhk93WXR0_zjZnC2Yvm0OO4ZxddNR0kB1vEKG4qH5WeIdZeYwLInWKPfw1lwWVsI1Ovq_8Yc-Kf-CqUr_7gODisdUr4Gw%26flowName%3DGeneralOAuthFlow%26as%3DS103713417%253A1784003238280480%26client_id%3D1078992815106-brpsupgvhheqg35tupphbh0qk9c32nq8.apps.googleusercontent.com%26requestPath%3D%252Fsignin%252Foauth%252Fconsent%23&app_domain=https%3A%2F%2Fgithub.com&rart=ANgoxcc_NOES78ybjy7TwiOLUC4V07zWIsbjg1RcBPRUAtUkxe3mN0Bs7y5N3fVzMmGsRCrk__5o_U6s8sq2DCvJX1Lj8M01F1y30fZbSxMzWQOYHx1RIq8:0
+[   82414ms] [LOG] %c%s color: red; background: yellow; font-size: 24px; 경고! @ https://www.gstatic.com/_/mss/boq-identity/_/js/k=boq-identity.AccountsSignInUi.ko.ssmGCyRI-bg.es5.O/am=EQUAAAADRSECgPH__wMAEECQ7YDvWQBNgJABAAAAAAAAAACWAACoEQ/d=1/excm=_b,_tp,identifierview/ed=1/dg=0/wt=2/ujg=1/rs=AOaEmlHbq2R-biqLpVA-SFDOn2wE1BxLfw/dti=1/m=_b,_tp:550
+[   82414ms] [LOG] %c%s font-size: 18px; 이 콘솔을 사용하면 공격자가 Self-XSS라는 공격을 통해 내 신원을 도용하여 내 정보를 빼낼 수 있습니다.
+알지 못하는 코드를 입력하거나 붙여넣지 마세요. @ https://www.gstatic.com/_/mss/boq-identity/_/js/k=boq-identity.AccountsSignInUi.ko.ssmGCyRI-bg.es5.O/am=EQUAAAADRSECgPH__wMAEECQ7YDvWQBNgJABAAAAAAAAAACWAACoEQ/d=1/excm=_b,_tp,identifierview/ed=1/dg=0/wt=2/ujg=1/rs=AOaEmlHbq2R-biqLpVA-SFDOn2wE1BxLfw/dti=1/m=_b,_tp:550
+[  101054ms] [LOG] %c
+▲
+
+    ____                               _ __
+   / __ \________  ____ _____ ___     (_) /_
+  / / / / ___/ _ \/ __ `/ __ `__ \   / / __/
+ / /_/ / /  /  __/ /_/ / / / / / /  / / /__
+/_____/_/   \___/\__,_/_/ /_/ /_/  /_/\__( )
+   _____ __    _          _ __           |/
+  / ___// /_  (_)___     (_) /_
+  \__ \/ __ \/ / __ \   / / __/
+ ___/ / / / / / /_/ /  / / /_
+/____/_/ /_/_/ .___/  /_/\__/
+            /_/
+  
+
+Hello!
+
+- Open Source https://vercel.com/oss
+- Careers https://vercel.com/careers
+- Status https://vercel-status.com
+
+ font-family: "Geist Mono", monospace; white-space: pre; line-height: 1; @ https://vercel.com/_next/static/immutable/chunks/182s_fkvb5w04.js:78
+[  101468ms] [WARNING] [GSI_LOGGER]: Your client application uses one of the Google One Tap prompt UI status methods that may stop functioning when FedCM becomes mandatory. Refer to the migration guide to update your code accordingly and opt-in to FedCM to test your changes. Learn more: https://developers.google.com/identity/gsi/web/guides/fedcm-migration?s=dc#display_moment and https://developers.google.com/identity/gsi/web/guides/fedcm-migration?s=dc#skipped_moment @ https://accounts.google.com/gsi/client:86
+[  101479ms] [ERROR] Not signed in with the identity provider. @ https://vercel.com/login:0
+[  101558ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://vercel.com/api/jwt:0
+[  101963ms] [WARNING] Deprecated API for given entry type. @ https://vercel.com/_next/static/immutable/chunks/3sr_g235pli9w.js:18
+[  105056ms] [ERROR] [GSI_LOGGER]: FedCM get() rejects with AbortError: signal is aborted without reason @ https://vercel.com/_next/static/immutable/chunks/0omhszvlhlbpn.js:8
+[  105109ms] [ERROR] Failed to load resource: the server responded with a status of 429 () @ https://o205439.ingest.sentry.io/api/1323670/envelope/?sentry_key=d00780d432ac4ccf882f60dd02062e14&sentry_version=7&sentry_client=sentry.javascript.browser%2F7.111.0:0
+[  127838ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ https://accounts.google.com/v3/signin/identifier?opparams=%253F&dsh=S-1239792956%3A1784003283970710&client_id=1078992815106-brpsupgvhheqg35tupphbh0qk9c32nq8.apps.googleusercontent.com&code_challenge=8X6GX1GQhbi_qZgtHpViejE9SyDXPnxR9gymp3rBamQ&code_challenge_method=S256&nonce=8dfedb55f9499ad69ca39a54f782ec0f&o2v=2&prompt=select_account&redirect_uri=https%3A%2F%2Fgithub.com%2Fsessions%2Fsocial%2Fgoogle%2Fcallback&response_type=code&scope=openid+email+profile&service=lso&state=3118e4be1cf026ea3dffb5115866fbf4&flowName=GeneralOAuthFlow&continue=https%3A%2F%2Faccounts.google.com%2Fsignin%2Foauth%2Fconsent%3Fauthuser%3Dunknown%26part%3DAJi8hANgY47qFcozXDxjfjfT5zrRnH0EyHJ07vVc7Uv4WfVFhSwfK6ca1JwinBopwN1Qz4SqMHU5GgGwJMz18l9GDtBr-XlIHRx9U1NnCCZplKTiBdiR_fZpzfUcM4BXS3QNJrItQNaPnctSdMPPOID3GXkveAsU4jTKmVDLbonvdBGXWfQLb1MFbQCc5C89dNuqzqCfurX8OKjxJ7d0McWfDxTzzOB81b6m2yBDN8oCrUjmP34jQIhR6HJUuhKKkURddry8m8ymZbS7ylNM6fyI19VUEABV2wekOCfLyATRsFk7sIV5FSqnucWuEPJ2c37-JSYZv59KMyZlpXXkDsZclYbH1TKHqVfDcS0b-FB_joc8UzOihLQIybU06Kx3zddpWSzsDDBlSTjLhCiZ6BTNYatdR9d4-LbDnSVEs1Q8ChJ-yxD0p-P8oxMqlBWPCMSfMr5BYODvvJexXnaTwgytgi_6TqscuA%26flowName%3DGeneralOAuthFlow%26as%3DS-1239792956%253A1784003283970710%26client_id%3D1078992815106-brpsupgvhheqg35tupphbh0qk9c32nq8.apps.googleusercontent.com%26requestPath%3D%252Fsignin%252Foauth%252Fconsent%23&app_domain=https%3A%2F%2Fgithub.com&rart=ANgoxcdTFgr0M3O-0wlnNLUDrh2TXCGmNyFXLXSauBvsnL8OBppla0i_Tr2MCBjiz-4iP-kqLEvxxzNkxs7GEiVsNI2y9t3E_3UWMxMNMX8q5dYu9MxpUQY:0
+[  127860ms] [LOG] %c%s color: red; background: yellow; font-size: 24px; 경고! @ https://www.gstatic.com/_/mss/boq-identity/_/js/k=boq-identity.AccountsSignInUi.ko.ssmGCyRI-bg.es5.O/am=EQUAAAADRSECgPH__wMAEECQ7YDvWQBNgJABAAAAAAAAAACWAACoEQ/d=1/excm=_b,_tp,identifierview/ed=1/dg=0/wt=2/ujg=1/rs=AOaEmlHbq2R-biqLpVA-SFDOn2wE1BxLfw/dti=1/m=_b,_tp:550
+[  127860ms] [LOG] %c%s font-size: 18px; 이 콘솔을 사용하면 공격자가 Self-XSS라는 공격을 통해 내 신원을 도용하여 내 정보를 빼낼 수 있습니다.
+알지 못하는 코드를 입력하거나 붙여넣지 마세요. @ https://www.gstatic.com/_/mss/boq-identity/_/js/k=boq-identity.AccountsSignInUi.ko.ssmGCyRI-bg.es5.O/am=EQUAAAADRSECgPH__wMAEECQ7YDvWQBNgJABAAAAAAAAAACWAACoEQ/d=1/excm=_b,_tp,identifierview/ed=1/dg=0/wt=2/ujg=1/rs=AOaEmlHbq2R-biqLpVA-SFDOn2wE1BxLfw/dti=1/m=_b,_tp:550
+[  146528ms] [WARNING] Blocked aria-hidden on an element because its descendant retained focus. The focus must not be hidden from assistive technology users. Avoid using aria-hidden on a focused element or its ancestor. Consider using the inert attribute instead, which will also prevent focus. For more details, see the aria-hidden section of the WAI-ARIA specification at https://w3c.github.io/aria/#aria-hidden.
+Element with focus: <div.VfPpkd-qNpTzb-P1ekSe VfPpkd-qNpTzb-P1ekSe-OWXEXe-A9y3zc VfPpkd-qNpTzb-P1ekSe-OWXEXe-OiiCO-IhfUye>
+Ancestor with aria-hidden: <div.wuMMWb> @ https://accounts.google.com/v3/signin/identifier?opparams=%253F&dsh=S-1239792956%3A1784003283970710&client_id=1078992815106-brpsupgvhheqg35tupphbh0qk9c32nq8.apps.googleusercontent.com&code_challenge=8X6GX1GQhbi_qZgtHpViejE9SyDXPnxR9gymp3rBamQ&code_challenge_method=S256&nonce=8dfedb55f9499ad69ca39a54f782ec0f&o2v=2&prompt=select_account&redirect_uri=https%3A%2F%2Fgithub.com%2Fsessions%2Fsocial%2Fgoogle%2Fcallback&response_type=code&scope=openid+email+profile&service=lso&state=3118e4be1cf026ea3dffb5115866fbf4&flowName=GeneralOAuthFlow&continue=https%3A%2F%2Faccounts.google.com%2Fsignin%2Foauth%2Fconsent%3Fauthuser%3Dunknown%26part%3DAJi8hANgY47qFcozXDxjfjfT5zrRnH0EyHJ07vVc7Uv4WfVFhSwfK6ca1JwinBopwN1Qz4SqMHU5GgGwJMz18l9GDtBr-XlIHRx9U1NnCCZplKTiBdiR_fZpzfUcM4BXS3QNJrItQNaPnctSdMPPOID3GXkveAsU4jTKmVDLbonvdBGXWfQLb1MFbQCc5C89dNuqzqCfurX8OKjxJ7d0McWfDxTzzOB81b6m2yBDN8oCrUjmP34jQIhR6HJUuhKKkURddry8m8ymZbS7ylNM6fyI19VUEABV2wekOCfLyATRsFk7sIV5FSqnucWuEPJ2c37-JSYZv59KMyZlpXXkDsZclYbH1TKHqVfDcS0b-FB_joc8UzOihLQIybU06Kx3zddpWSzsDDBlSTjLhCiZ6BTNYatdR9d4-LbDnSVEs1Q8ChJ-yxD0p-P8oxMqlBWPCMSfMr5BYODvvJexXnaTwgytgi_6TqscuA%26flowName%3DGeneralOAuthFlow%26as%3DS-1239792956%253A1784003283970710%26client_id%3D1078992815106-brpsupgvhheqg35tupphbh0qk9c32nq8.apps.googleusercontent.com%26requestPath%3D%252Fsignin%252Foauth%252Fconsent%23&app_domain=https%3A%2F%2Fgithub.com&rart=ANgoxcdTFgr0M3O-0wlnNLUDrh2TXCGmNyFXLXSauBvsnL8OBppla0i_Tr2MCBjiz-4iP-kqLEvxxzNkxs7GEiVsNI2y9t3E_3UWMxMNMX8q5dYu9MxpUQY:0
+[  148798ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ https://accounts.google.com/v3/signin/challenge/pwd?TL=ADCchmYYp5L63BcRjhW4sJ2GE6Q_gJHR0GwuiEyYAEeFL2pkkMmgmbsuuf8Q91xf&app_domain=https%3A%2F%2Fgithub.com&checkConnection=youtube%3A446&checkedDomains=youtube&cid=2&client_id=1078992815106-brpsupgvhheqg35tupphbh0qk9c32nq8.apps.googleusercontent.com&code_challenge=8X6GX1GQhbi_qZgtHpViejE9SyDXPnxR9gymp3rBamQ&code_challenge_method=S256&continue=https%3A%2F%2Faccounts.google.com%2Fsignin%2Foauth%2Fconsent%3Fauthuser%3Dunknown%26part%3DAJi8hANgY47qFcozXDxjfjfT5zrRnH0EyHJ07vVc7Uv4WfVFhSwfK6ca1JwinBopwN1Qz4SqMHU5GgGwJMz18l9GDtBr-XlIHRx9U1NnCCZplKTiBdiR_fZpzfUcM4BXS3QNJrItQNaPnctSdMPPOID3GXkveAsU4jTKmVDLbonvdBGXWfQLb1MFbQCc5C89dNuqzqCfurX8OKjxJ7d0McWfDxTzzOB81b6m2yBDN8oCrUjmP34jQIhR6HJUuhKKkURddry8m8ymZbS7ylNM6fyI19VUEABV2wekOCfLyATRsFk7sIV5FSqnucWuEPJ2c37-JSYZv59KMyZlpXXkDsZclYbH1TKHqVfDcS0b-FB_joc8UzOihLQIybU06Kx3zddpWSzsDDBlSTjLhCiZ6BTNYatdR9d4-LbDnSVEs1Q8ChJ-yxD0p-P8oxMqlBWPCMSfMr5BYODvvJexXnaTwgytgi_6TqscuA%26flowName%3DGeneralOAuthFlow%26as%3DS-1239792956%253A1784003283970710%26client_id%3D1078992815106-brpsupgvhheqg35tupphbh0qk9c32nq8.apps.googleusercontent.com%26requestPath%3D%252Fsignin%252Foauth%252Fconsent%23&dsh=S-1239792956%3A1784003283970710&flowName=GeneralOAuthFlow&nonce=8dfedb55f9499ad69ca39a54f782ec0f&o2v=2&opparams=%253F&prompt=select_account&pstMsg=1&rart=ANgoxcdTFgr0M3O-0wlnNLUDrh2TXCGmNyFXLXSauBvsnL8OBppla0i_Tr2MCBjiz-4iP-kqLEvxxzNkxs7GEiVsNI2y9t3E_3UWMxMNMX8q5dYu9MxpUQY&redirect_uri=https%3A%2F%2Fgithub.com%2Fsessions%2Fsocial%2Fgoogle%2Fcallback&response_type=code&scope=openid%20email%20profile&service=lso&state=3118e4be1cf026ea3dffb5115866fbf4:0
+[  175021ms] [LOG] %c
+▲
+
+    ________   _ __ _          ____           __
+   /  _/ __/  (_) /( )_____   / __/___ ______/ /_
+   / // /_   / / __/// ___/  / /_/ __ `/ ___/ __/
+ _/ // __/  / / /_  (__  )  / __/ /_/ (__  ) /_
+/___/_/    /_/\__/ /____/  /_/  \__,_/____/\__/
+    _ __ _                         _    __                    __
+   (_) /( )_____   ____  ____     | |  / /__  _____________  / /
+  / / __/// ___/  / __ \/ __ \    | | / / _ \/ ___/ ___/ _ \/ /
+ / / /_  (__  )  / /_/ / / / /    | |/ /  __/ /  / /__/  __/ /
+/_/\__/ /____/   \____/_/ /_/     |___/\___/_/   \___/\___/_/
+  
+
+Hello!
+
+- Open Source https://vercel.com/oss
+- Careers https://vercel.com/careers
+- Status https://vercel-status.com
+
+ font-family: "Geist Mono", monospace; white-space: pre; line-height: 1; @ https://vercel.com/_next/static/immutable/chunks/182s_fkvb5w04.js:78
+[  179372ms] [WARNING] Deprecated API for given entry type. @ https://vercel.com/_next/static/immutable/chunks/3sr_g235pli9w.js:18
+[  188045ms] [WARNING] The resource https://vercel.com/_next/static/immutable/chunks/1u1f94yols-f7.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://vercel.com/aidt?repo=https%3A%2F%2Fgithub.com%2Fsjinhwang%2Fclaude-nextjs-starters:0
+[  188045ms] [WARNING] The resource https://vercel.com/_next/static/immutable/chunks/2c5nd-ebf6mbm.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://vercel.com/aidt?repo=https%3A%2F%2Fgithub.com%2Fsjinhwang%2Fclaude-nextjs-starters:0
+[  188045ms] [WARNING] The resource https://vercel.com/_next/static/immutable/chunks/0jowte4krju8u.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://vercel.com/aidt?repo=https%3A%2F%2Fgithub.com%2Fsjinhwang%2Fclaude-nextjs-starters:0
+[  188045ms] [WARNING] The resource https://vercel.com/_next/static/immutable/media/797e433ab948586e.p.1v5bejj26fx9h.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://vercel.com/aidt?repo=https%3A%2F%2Fgithub.com%2Fsjinhwang%2Fclaude-nextjs-starters:0
+[  188045ms] [WARNING] The resource https://vercel.com/_next/static/immutable/chunks/0cu3i78uqn0qi.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://vercel.com/aidt?repo=https%3A%2F%2Fgithub.com%2Fsjinhwang%2Fclaude-nextjs-starters:0
+[  188045ms] [WARNING] The resource https://vercel.com/_next/static/immutable/chunks/401vbddj2qluq.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://vercel.com/aidt?repo=https%3A%2F%2Fgithub.com%2Fsjinhwang%2Fclaude-nextjs-starters:0
+[  188045ms] [WARNING] The resource https://vercel.com/_next/static/immutable/chunks/3x64jed__0tzx.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://vercel.com/aidt?repo=https%3A%2F%2Fgithub.com%2Fsjinhwang%2Fclaude-nextjs-starters:0
+[  188045ms] [WARNING] The resource https://vercel.com/_next/static/immutable/chunks/3k4lqstebhz_c.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://vercel.com/aidt?repo=https%3A%2F%2Fgithub.com%2Fsjinhwang%2Fclaude-nextjs-starters:0
+[  188045ms] [WARNING] The resource https://vercel.com/_next/static/immutable/chunks/02utd6sa6ymkm.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://vercel.com/aidt?repo=https%3A%2F%2Fgithub.com%2Fsjinhwang%2Fclaude-nextjs-starters:0
+[  188045ms] [WARNING] The resource https://vercel.com/_next/static/immutable/chunks/2tnpceefcwp8j.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://vercel.com/aidt?repo=https%3A%2F%2Fgithub.com%2Fsjinhwang%2Fclaude-nextjs-starters:0
+[  188045ms] [WARNING] The resource https://vercel.com/_next/static/immutable/chunks/2jz6heq1zxafi.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://vercel.com/aidt?repo=https%3A%2F%2Fgithub.com%2Fsjinhwang%2Fclaude-nextjs-starters:0
+[  188045ms] [WARNING] The resource https://vercel.com/_next/static/immutable/media/Geist_Variable-s.p.2v-cf9syxr5ni.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://vercel.com/aidt?repo=https%3A%2F%2Fgithub.com%2Fsjinhwang%2Fclaude-nextjs-starters:0
+[  188045ms] [WARNING] The resource https://vercel.com/_next/static/immutable/chunks/2auu4bhcsy3ul.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://vercel.com/aidt?repo=https%3A%2F%2Fgithub.com%2Fsjinhwang%2Fclaude-nextjs-starters:0
+[  193476ms] [WARNING] The resource https://vercel.com/_next/static/immutable/chunks/1u1f94yols-f7.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://vercel.com/aidt?repo=https%3A%2F%2Fgithub.com%2Fsjinhwang%2Fclaude-nextjs-starters:0
+[  193476ms] [WARNING] The resource https://vercel.com/_next/static/immutable/chunks/2c5nd-ebf6mbm.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://vercel.com/aidt?repo=https%3A%2F%2Fgithub.com%2Fsjinhwang%2Fclaude-nextjs-starters:0
+[  193476ms] [WARNING] The resource https://vercel.com/_next/static/immutable/chunks/0jowte4krju8u.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://vercel.com/aidt?repo=https%3A%2F%2Fgithub.com%2Fsjinhwang%2Fclaude-nextjs-starters:0
+[  193476ms] [WARNING] The resource https://vercel.com/_next/static/immutable/media/797e433ab948586e.p.1v5bejj26fx9h.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://vercel.com/aidt?repo=https%3A%2F%2Fgithub.com%2Fsjinhwang%2Fclaude-nextjs-starters:0
+[  193476ms] [WARNING] The resource https://vercel.com/_next/static/immutable/chunks/0cu3i78uqn0qi.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://vercel.com/aidt?repo=https%3A%2F%2Fgithub.com%2Fsjinhwang%2Fclaude-nextjs-starters:0
+[  193476ms] [WARNING] The resource https://vercel.com/_next/static/immutable/chunks/401vbddj2qluq.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://vercel.com/aidt?repo=https%3A%2F%2Fgithub.com%2Fsjinhwang%2Fclaude-nextjs-starters:0
+[  193476ms] [WARNING] The resource https://vercel.com/_next/static/immutable/chunks/3x64jed__0tzx.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://vercel.com/aidt?repo=https%3A%2F%2Fgithub.com%2Fsjinhwang%2Fclaude-nextjs-starters:0
+[  193476ms] [WARNING] The resource https://vercel.com/_next/static/immutable/chunks/3k4lqstebhz_c.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://vercel.com/aidt?repo=https%3A%2F%2Fgithub.com%2Fsjinhwang%2Fclaude-nextjs-starters:0
+[  193477ms] [WARNING] The resource https://vercel.com/_next/static/immutable/chunks/02utd6sa6ymkm.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://vercel.com/aidt?repo=https%3A%2F%2Fgithub.com%2Fsjinhwang%2Fclaude-nextjs-starters:0
+[  193477ms] [WARNING] The resource https://vercel.com/_next/static/immutable/chunks/2tnpceefcwp8j.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://vercel.com/aidt?repo=https%3A%2F%2Fgithub.com%2Fsjinhwang%2Fclaude-nextjs-starters:0
+[  193477ms] [WARNING] The resource https://vercel.com/_next/static/immutable/chunks/2jz6heq1zxafi.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://vercel.com/aidt?repo=https%3A%2F%2Fgithub.com%2Fsjinhwang%2Fclaude-nextjs-starters:0
+[  193477ms] [WARNING] The resource https://vercel.com/_next/static/immutable/media/Geist_Variable-s.p.2v-cf9syxr5ni.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://vercel.com/aidt?repo=https%3A%2F%2Fgithub.com%2Fsjinhwang%2Fclaude-nextjs-starters:0
+[  193477ms] [WARNING] The resource https://vercel.com/_next/static/immutable/chunks/2auu4bhcsy3ul.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://vercel.com/aidt?repo=https%3A%2F%2Fgithub.com%2Fsjinhwang%2Fclaude-nextjs-starters:0
