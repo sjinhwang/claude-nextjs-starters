@@ -1,5 +1,6 @@
 import { Client } from "@notionhq/client";
 import { unstable_cache } from "next/cache";
+import { cache } from "react";
 import { logger } from "@/lib/logger";
 import type {
   Invoice,
@@ -136,10 +137,16 @@ async function fetchAllInvoices(): Promise<Omit<Invoice, "항목">[]> {
 // 위 fetch* 함수들을 unstable_cache로 감싸 60초간 Notion API 응답을 재사용한다.
 // (동일 인자 호출에 대해서만 캐시가 적용되며, 인자는 자동으로 캐시 키에 포함된다.)
 
-export const getInvoiceByToken = unstable_cache(
-  fetchInvoiceByToken,
-  ["notion-invoice-by-token"],
-  { revalidate: NOTION_CACHE_REVALIDATE_SECONDS, tags: [NOTION_CACHE_TAG] },
+// T1104: invoices/[token]/page.tsx는 generateMetadata와 페이지 컴포넌트 양쪽에서
+// getInvoiceByToken(token)을 각각 호출한다. unstable_cache는 요청 간 캐싱만 담당하므로
+// React cache()로 한 번 더 감싸 같은 요청 내 중복 호출을 하나의 프라미스로 합친다
+// (Next.js 공식 문서 "Memoizing data requests" 패턴).
+export const getInvoiceByToken = cache(
+  unstable_cache(
+    fetchInvoiceByToken,
+    ["notion-invoice-by-token"],
+    { revalidate: NOTION_CACHE_REVALIDATE_SECONDS, tags: [NOTION_CACHE_TAG] },
+  ),
 );
 
 export const getInvoiceItems = unstable_cache(

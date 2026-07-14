@@ -1,0 +1,71 @@
+- generic [active] [ref=f17e1]:
+  - banner [ref=f17e2]:
+    - generic [ref=f17e3]:
+      - link "InvoiceHub" [ref=f17e4] [cursor=pointer]:
+        - /url: /
+      - navigation [ref=f17e5]:
+        - link "어드민" [ref=f17e6] [cursor=pointer]:
+          - /url: /admin
+      - 'button "현재 테마: 라이트. 클릭하여 전환" [ref=f17e8]'
+  - main [ref=f17e15]:
+    - generic [ref=f17e16]:
+      - button "PDF로 저장" [ref=f17e18]
+      - generic [ref=f17e20]:
+        - generic [ref=f17e21]:
+          - heading "견 적 서" [level=1] [ref=f17e22]
+          - generic [ref=f17e23]:
+            - paragraph [ref=f17e24]: 견적서 번호
+            - paragraph [ref=f17e25]: INV-2026-06-001
+        - generic [ref=f17e26]:
+          - generic [ref=f17e27]:
+            - paragraph [ref=f17e28]: 수신인
+            - paragraph [ref=f17e29]: ABC 회사 귀중
+          - generic [ref=f17e30]:
+            - paragraph [ref=f17e31]: 발행인
+            - paragraph [ref=f17e32]: 발행인 회사명
+            - paragraph [ref=f17e33]: 연락처
+            - paragraph [ref=f17e34]: 주소
+        - generic [ref=f17e35]:
+          - generic [ref=f17e36]:
+            - generic [ref=f17e37]: 발행일
+            - generic [ref=f17e38]: 2026년 6월 10일
+          - generic [ref=f17e39]:
+            - generic [ref=f17e40]: 유효기간
+            - generic [ref=f17e41]: 2026년 6월 30일
+        - table [ref=f17e42]:
+          - rowgroup [ref=f17e43]:
+            - row [ref=f17e44]:
+              - columnheader "품목" [ref=f17e45]
+              - columnheader "수량" [ref=f17e46]
+              - columnheader "단가" [ref=f17e47]
+              - columnheader "금액" [ref=f17e48]
+          - rowgroup [ref=f17e49]:
+            - row [ref=f17e50]:
+              - cell "명함 디자인" [ref=f17e51]
+              - cell "100" [ref=f17e52]
+              - cell "10,000원" [ref=f17e53]
+              - cell "1,000,000원" [ref=f17e54]
+            - row [ref=f17e55]:
+              - cell "로고 제작" [ref=f17e56]
+              - cell "2" [ref=f17e57]
+              - cell "500,000원" [ref=f17e58]
+              - cell "1,000,000원" [ref=f17e59]
+            - row [ref=f17e60]:
+              - cell "웹사이트 디자인" [ref=f17e61]
+              - cell "1" [ref=f17e62]
+              - cell "3,000,000원" [ref=f17e63]
+              - cell "3,000,000원" [ref=f17e64]
+        - generic [ref=f17e66]:
+          - generic [ref=f17e67]:
+            - generic [ref=f17e68]: 공급가액
+            - generic [ref=f17e69]: 5,000,000원
+          - generic [ref=f17e70]:
+            - generic [ref=f17e71]: 부가세 (10%)
+            - generic [ref=f17e72]: 500,000원
+          - generic [ref=f17e73]:
+            - generic [ref=f17e74]: 합계
+            - generic [ref=f17e75]: 5,500,000원
+  - contentinfo [ref=f17e76]:
+    - paragraph [ref=f17e78]: © 2026 InvoiceHub. All rights reserved.
+  - button "Open Next.js Dev Tools" [ref=f17e84] [cursor=pointer]
+  - alert [ref=f17e88]

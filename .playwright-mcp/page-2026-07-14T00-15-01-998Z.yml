@@ -1,0 +1,45 @@
+- generic:
+  - generic [active]:
+    - generic [ref=f12e3]:
+      - generic [ref=f12e4]:
+        - navigation [ref=f12e6]:
+          - button [disabled] [ref=f12e7]:
+            - img "previous" [ref=f12e8]
+          - generic [ref=f12e10]:
+            - generic [ref=f12e11]: 1/
+            - text: "1"
+          - button [disabled] [ref=f12e12]:
+            - img "next" [ref=f12e13]
+        - link "Next.js 16.2.9 (stale) Turbopack" [ref=f12e16] [cursor=pointer]:
+          - /url: https://nextjs.org/docs/messages/version-staleness
+          - generic "There is a newer version (16.2.10) available, upgrade recommended!" [ref=f12e19]: Next.js 16.2.9 (stale)
+          - generic [ref=f12e20]: Turbopack
+      - generic [ref=f12e21]:
+        - dialog "Runtime Error" [ref=f12e22]:
+          - generic [ref=f12e26]:
+            - generic [ref=f12e27]:
+              - generic [ref=f12e28]: Runtime Error
+              - generic [ref=f12e30]:
+                - button "Copy Error Info" [ref=f12e31] [cursor=pointer]
+                - button "No related documentation found" [disabled] [ref=f12e34]
+                - button "Attach Node.js inspector" [ref=f12e37] [cursor=pointer]
+            - generic [ref=f12e46]: Jest worker encountered 2 child process exceptions, exceeding retry limit
+          - generic [ref=f12e48]: "1"
+          - generic [ref=f12e49]: "2"
+        - contentinfo [ref=f12e50]:
+          - region "Error feedback" [ref=f12e51]:
+            - paragraph [ref=f12e52]:
+              - link "Was this helpful?" [ref=f12e53] [cursor=pointer]:
+                - /url: https://nextjs.org/telemetry#error-feedback
+            - button "Mark as helpful" [ref=f12e54] [cursor=pointer]
+            - button "Mark as not helpful" [ref=f12e58] [cursor=pointer]
+    - generic [ref=f12e65] [cursor=pointer]:
+      - button "Open Next.js Dev Tools" [ref=f12e66]
+      - generic [ref=f12e70]:
+        - button "Open issues overlay" [ref=f12e71]:
+          - generic [ref=f12e72]:
+            - generic [ref=f12e73]: "0"
+            - generic [ref=f12e74]: "1"
+          - generic [ref=f12e75]: Issue
+        - button "Collapse issues badge" [ref=f12e76]
+  - alert [ref=f12e79]

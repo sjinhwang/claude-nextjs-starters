@@ -1,0 +1,72 @@
+- generic [ref=f5e1]:
+  - main [ref=f5e2]:
+    - generic [ref=f5e3]:
+      - generic [ref=f5e4]:
+        - generic [ref=f5e5]: 견적서 관리 시스템
+        - generic [ref=f5e11]:
+          - button [ref=f5e120]
+          - button [ref=f5e121]: 로그아웃
+      - generic [ref=f5e16]:
+        - complementary [ref=f5e17]:
+          - navigation [ref=f5e18]:
+            - link [ref=f5e122] [cursor=pointer]:
+              - /url: /admin
+              - text: 대시보드
+            - link [ref=f5e123] [cursor=pointer]:
+              - /url: /admin/invoices
+              - text: 견적서 목록
+        - main [ref=f5e27]:
+          - generic [ref=f5e28]:
+            - generic [ref=f5e29]:
+              - heading [level=1] [ref=f5e124]: 견적서 관리
+              - paragraph [ref=f5e31]: 총 1건
+            - button [ref=f5e125]: 새로고침
+          - generic [ref=f5e33]:
+            - textbox [ref=f5e126]:
+              - /placeholder: 클라이언트명 또는 견적서번호 검색
+            - generic [ref=f5e35]:
+              - button [ref=f5e127]: 대기
+              - button [ref=f5e128]: 승인
+              - button [ref=f5e129]: 거절
+            - generic [ref=f5e39]:
+              - textbox [ref=f5e130]
+              - generic [ref=f5e41]: ~
+              - textbox [ref=f5e131]
+            - button [ref=f5e132]: 초기화
+          - table [ref=f5e45]:
+            - rowgroup [ref=f5e46]:
+              - row [ref=f5e133]:
+                - columnheader [ref=f5e134]:
+                  - button [ref=f5e135]: 견적서 번호
+                - columnheader [ref=f5e136]: 클라이언트
+                - columnheader [ref=f5e137]:
+                  - button [ref=f5e138]: 발행일
+                - columnheader [ref=f5e139]:
+                  - button [ref=f5e140]: 상태
+                - columnheader [ref=f5e141]: 링크
+            - rowgroup [ref=f5e64]:
+              - row [ref=f5e142]:
+                - cell [ref=f5e143]: INV-2026-06-001
+                - cell [ref=f5e144]: ABC 회사
+                - cell [ref=f5e145]: 2026.06.10
+                - cell [ref=f5e146]:
+                  - generic [ref=f5e70]: 승인
+                - cell [ref=f5e147]:
+                  - generic [ref=f5e72]:
+                    - link [ref=f5e148] [cursor=pointer]:
+                      - /url: http://localhost:3002/invoices/49d7cdb5-9ca6-4fb3-8789-7d0c991580bd
+                      - text: http://localhost:3002/invoices/49d7cdb5-9ca6-4fb3-8789-7d0c991580bd
+                    - generic [ref=f5e74]:
+                      - button [ref=f5e149]: 미리보기
+                      - button [ref=f5e150]
+          - generic [ref=f5e77]:
+            - paragraph [ref=f5e78]: 총 1건 · 1/1 페이지
+            - generic [ref=f5e79]:
+              - button [disabled]: 이전
+              - button [disabled]: 다음
+  - button "Open Next.js Dev Tools" [ref=f5e85] [cursor=pointer]
+  - alert [ref=f5e92]
+  - menu "공유" [ref=f5e93]:
+    - menuitem "복사" [ref=f5e116] [cursor=pointer]
+    - menuitem "이메일" [ref=f5e98] [cursor=pointer]
+    - menuitem "메신저" [active] [ref=f5e102] [cursor=pointer]

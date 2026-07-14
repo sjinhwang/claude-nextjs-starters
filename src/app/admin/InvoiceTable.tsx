@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { useDebounceValue } from "usehooks-ts";
 import {
   ArrowDown,
@@ -11,14 +11,28 @@ import {
   ChevronRight,
   Copy,
   Eye,
+  Mail,
   RefreshCw,
+  Send,
+  Share2,
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import Badge from "@/components/ui/Badge";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/DropdownMenu";
 import { fetchAllInvoices } from "./actions";
 import InvoiceFilterBar from "./InvoiceFilterBar";
 import { logger } from "@/lib/logger";
-import { buildInvoiceShareUrl } from "@/lib/invoice-url";
+import {
+  buildInvoiceMailtoUrl,
+  buildInvoiceShareUrl,
+  buildInvoiceTelegramShareUrl,
+} from "@/lib/invoice-url";
 import { cn } from "@/lib/utils";
 import {
   PAGE_SIZE,
@@ -78,6 +92,18 @@ const STATUS_CONFIG: Record<
   승인: { label: "승인", variant: "success" },
   거절: { label: "거절", variant: "destructive" },
 };
+
+// T1102: navigator.share 지원 여부 — 값이 바뀌지 않으므로 구독은 no-op으로 두고,
+// 서버 스냅샷은 항상 false(SSR엔 navigator가 없음)로 고정해 hydration mismatch를 피한다.
+function subscribeNoop() {
+  return () => {};
+}
+function getNativeShareSnapshot() {
+  return typeof navigator !== "undefined" && !!navigator.share;
+}
+function getNativeShareServerSnapshot() {
+  return false;
+}
 
 function formatDate(dateStr: string | null): string {
   if (!dateStr) return "-";
@@ -198,6 +224,36 @@ export default function InvoiceTable({
     const success = await copyToClipboard(url);
     setCopyFeedback({ id: invoice.id, status: success ? "success" : "error" });
     copyTimeoutRef.current = setTimeout(() => setCopyFeedback(null), 1500);
+  }
+
+  // T1102: navigator.share 지원 여부(마운트 후에만 true가 될 수 있음 — SSR/최초 렌더는 항상 false)
+  const canNativeShare = useSyncExternalStore(
+    subscribeNoop,
+    getNativeShareSnapshot,
+    getNativeShareServerSnapshot,
+  );
+
+  // F012, T1101: 이메일(mailto)로 공유
+  function handleEmailShare(invoice: InvoiceSummary) {
+    const url = buildInvoiceShareUrl(invoice.공유토큰);
+    window.location.href = buildInvoiceMailtoUrl(invoice.견적서번호, invoice.클라이언트명, url);
+  }
+
+  // F012, T1102: 텔레그램으로 공유
+  function handleTelegramShare(invoice: InvoiceSummary) {
+    const url = buildInvoiceShareUrl(invoice.공유토큰);
+    const text = `견적서 ${invoice.견적서번호}`;
+    window.open(buildInvoiceTelegramShareUrl(url, text), "_blank", "noopener,noreferrer");
+  }
+
+  // F012, T1102: OS 네이티브 공유 시트 — 사용자가 취소하면 AbortError가 발생하므로 무시
+  async function handleNativeShare(invoice: InvoiceSummary) {
+    const url = buildInvoiceShareUrl(invoice.공유토큰);
+    try {
+      await navigator.share({ title: `견적서 ${invoice.견적서번호}`, url });
+    } catch {
+      // 사용자 취소 등 — 무시
+    }
   }
 
   // ─── T902~T905: 검색/필터/정렬 핸들러 — 값 변경과 함께 1페이지로 리셋(T906) ──
@@ -420,30 +476,56 @@ export default function InvoiceTable({
                             <Eye />
                             미리보기
                           </Button>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            disabled={!canCopy}
-                            onClick={() => canCopy && handleCopy(invoice)}
-                          >
-                            {copyFeedback?.id === invoice.id &&
-                            copyFeedback.status === "error" ? (
-                              <span className="text-red-600 dark:text-red-400">
-                                복사 실패
-                              </span>
-                            ) : copyFeedback?.id === invoice.id &&
-                              copyFeedback.status === "success" ? (
-                              <>
-                                <Check />
-                                복사됨
-                              </>
-                            ) : (
-                              <>
-                                <Copy />
-                                복사
-                              </>
-                            )}
-                          </Button>
+                          <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                              <Button variant="outline" size="sm" disabled={!canCopy}>
+                                <Share2 />
+                                공유
+                              </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end">
+                              <DropdownMenuItem
+                                onSelect={(e) => {
+                                  // 복사 성공/실패 피드백을 메뉴가 열린 채로 보여주기 위해 자동 닫힘을 막는다
+                                  e.preventDefault();
+                                  handleCopy(invoice);
+                                }}
+                              >
+                                {copyFeedback?.id === invoice.id &&
+                                copyFeedback.status === "error" ? (
+                                  <span className="text-red-600 dark:text-red-400">
+                                    복사 실패
+                                  </span>
+                                ) : copyFeedback?.id === invoice.id &&
+                                  copyFeedback.status === "success" ? (
+                                  <>
+                                    <Check />
+                                    복사됨
+                                  </>
+                                ) : (
+                                  <>
+                                    <Copy />
+                                    복사
+                                  </>
+                                )}
+                              </DropdownMenuItem>
+                              <DropdownMenuSeparator />
+                              <DropdownMenuItem onSelect={() => handleEmailShare(invoice)}>
+                                <Mail />
+                                이메일로 보내기
+                              </DropdownMenuItem>
+                              <DropdownMenuItem onSelect={() => handleTelegramShare(invoice)}>
+                                <Send />
+                                텔레그램 공유
+                              </DropdownMenuItem>
+                              {canNativeShare && (
+                                <DropdownMenuItem onSelect={() => handleNativeShare(invoice)}>
+                                  <Share2 />
+                                  공유하기
+                                </DropdownMenuItem>
+                              )}
+                            </DropdownMenuContent>
+                          </DropdownMenu>
                         </div>
                       </div>
                     </td>

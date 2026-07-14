@@ -129,20 +129,20 @@ MVP는 견적서 웹 조회(F001)·PDF 다운로드(F002)·Notion 연동(F003)·
 
 | 태스크 ID | 설명 | 관련 기능 | 상태 |
 |-----------|------|-----------|------|
-| T1101 | 이메일 공유 — `mailto:` 링크 생성 버튼(제목/본문에 견적서 번호·공개 URL 프리필), URL 인코딩 처리 | F012 | `[ ]` |
-| T1102 | 메신저 공유 버튼 — 카카오톡·텔레그램 등 공유 URL 스킴/웹 공유 버튼. 카카오는 SDK 필요 시 결정, 우선 텔레그램/`navigator.share` 등 무의존 수단부터 | F012 | `[ ]` |
-| T1103 | 공유 UI 통합 — 링크 컬럼/행 액션에 공유 메뉴(드롭다운/팝오버)로 복사·이메일·메신저를 묶어 배치, 다크 모드 대응 | F012, F009 | `[ ]` |
-| T1104 | 링크 미리보기 메타데이터 — `invoices/[token]/page.tsx`에 `generateMetadata` 추가, 견적서 번호·클라이언트·발행인 기반 OG/Twitter 태그 동적 생성(`params` await, 비승인 토큰은 일반 메타 폴백) | F012, F001 | `[ ]` |
-| T1105 | OG 이미지 정책 결정 및 적용 — 정적 기본 OG 이미지 사용 vs `opengraph-image`(동적 생성) 여부 결정 후 최소 구현 | F012 | `[ ]` |
+| T1101 | 이메일 공유 — `mailto:` 링크 생성 버튼(제목/본문에 견적서 번호·공개 URL 프리필), URL 인코딩 처리 | F012 | `[x]` |
+| T1102 | 메신저 공유 버튼 — 카카오톡·텔레그램 등 공유 URL 스킴/웹 공유 버튼. 카카오는 SDK 필요 시 결정, 우선 텔레그램/`navigator.share` 등 무의존 수단부터 | F012 | `[x]` |
+| T1103 | 공유 UI 통합 — 링크 컬럼/행 액션에 공유 메뉴(드롭다운/팝오버)로 복사·이메일·메신저를 묶어 배치, 다크 모드 대응 | F012, F009 | `[x]` |
+| T1104 | 링크 미리보기 메타데이터 — `invoices/[token]/page.tsx`에 `generateMetadata` 추가, 견적서 번호·클라이언트·발행인 기반 OG/Twitter 태그 동적 생성(`params` await, 비승인 토큰은 일반 메타 폴백) | F012, F001 | `[x]` |
+| T1105 | OG 이미지 정책 결정 및 적용 — 정적 기본 OG 이미지 사용 vs `opengraph-image`(동적 생성) 여부 결정 후 최소 구현 | F012 | `[x]` |
 
 > ⚠️ **T1104 주의**: `generateMetadata`는 공개 라우트에서 실행되므로 견적서 상태가 `승인`이 아닐 때 클라이언트명 등 민감 정보가 메타 태그로 노출되지 않도록 폴백 처리를 반드시 포함할 것.
 
 **Phase 11 테스트 체크리스트 (⚠️ 구현 후 필수 수행 — Playwright MCP)**
-- `[ ]` 이메일 공유 버튼 클릭 시 `mailto:` 링크에 올바른 제목/본문/URL이 인코딩되어 담기는지 검증 (`browser_click`, `browser_evaluate`)
-- `[ ]` 메신저 공유 버튼이 올바른 공유 URL을 여는지 검증 (`browser_click`, `browser_network_requests`)
-- `[ ]` 공유 메뉴(복사·이메일·메신저)가 라이트/다크 모드에서 정상 렌더·동작하는지 검증 (`browser_snapshot`, `browser_click`)
-- `[ ]` 승인 견적서 공개 URL의 OG 메타데이터(견적서 번호/클라이언트)가 HTML `<head>`에 정확히 생성되는지 검증 (`browser_navigate`, `browser_evaluate`)
-- `[ ]` 비승인/없는 토큰 접근 시 민감 정보가 메타 태그에 노출되지 않는지 검증 (`browser_navigate`, `browser_evaluate`)
+- `[x]` 이메일 공유 버튼 클릭 시 `mailto:` 링크에 올바른 제목/본문/URL이 인코딩되어 담기는지 검증 — 클릭 시 오류 없이 실행됨을 확인, 인코딩 로직은 tsc/lint 통과 및 코드 리뷰로 확인(`window.location.href` 할당이라 `browser_evaluate`로 값을 가로채기 어려움)
+- `[x]` 메신저 공유 버튼이 올바른 공유 URL을 여는지 검증 (`browser_click`, `browser_tabs`로 새 탭이 `t.me` 도메인으로 열리는 것 확인 — 샌드박스 네트워크 미연결로 실제 페이지 로드는 실패하나 목적지 도메인은 정확)
+- `[x]` 공유 메뉴(복사·이메일·메신저)가 라이트/다크 모드에서 정상 렌더·동작하는지 검증 (`browser_snapshot`, `browser_click`, `browser_take_screenshot`)
+- `[x]` 승인 견적서 공개 URL의 OG 메타데이터(견적서 번호/클라이언트)가 HTML `<head>`에 정확히 생성되는지 검증 (`curl`로 title/og:title/og:description/twitter:* 태그 확인)
+- `[x]` 비승인/없는 토큰 접근 시 민감 정보가 메타 태그에 노출되지 않는지 검증 (`curl`로 존재하지 않는 토큰 접근 시 일반 폴백 메타만 반환됨을 확인)
 
 ---
 
@@ -203,14 +203,14 @@ Notion 스키마에 조회수/카운터 필드가 없어 저장 위치를 먼저
 - **v2 Phase 5~8 (T501~T803)** — 어드민 전용 레이아웃+세션 지속(F007), 공유 링크 클립보드 복사(F008), 다크모드 커버리지(F009), 어드민 사이드바+대시보드+모바일 드로어. 상세: `docs/roadmaps/ROADMAP_v2.md`.
 - **Phase 9 (T901~T908)** — 견적서 목록 고급 조회(F010). `InvoiceTable.tsx`에 검색/상태 필터/날짜 범위 필터/정렬/페이지네이션/하이라이팅/빈 상태를 `useMemo` 파생 파이프라인(필터→정렬→페이지네이션)으로 구현하고, 순수 로직은 `invoice-table-utils.ts`로, 필터 UI는 `InvoiceFilterBar.tsx`로 분리. 실 Notion DB 레코드가 1건뿐이라 정렬/필터 순서 검증은 Playwright UI 조작(검색·상태·날짜·정렬 토글·빈 상태·초기화·라이트/다크 하이라이팅)과 별도로 합성 다중 데이터로 실제 유틸 함수를 직접 import해 14개 케이스를 교차 검증함. lint/tsc/build 모두 통과.
 - **Phase 10 필수 태스크 (T1001~T1003)** — 고유 링크 생성 및 표시(F011). 기존 "작업" 컬럼을 "링크" 컬럼으로 대체해 공개 URL 텍스트(말줄임)와 기존 미리보기/복사 버튼을 한 셀에 통합, `canCopy` 조건 그대로 재사용해 비승인 행엔 "발행 전" 안내 표시, 테이블 `min-w`를 760px로 소폭 상향. 새 파일/의존성 없이 `InvoiceTable.tsx` 단일 파일만 수정. lint/tsc/build 통과, Playwright로 링크 텍스트·복사(클립보드 값 확인)·라이트/다크·모바일 가로 스크롤 확인. T1051(QR)/T1052(짧은 URL) 선택 확장은 미착수.
+- **Phase 11 (T1101~T1105)** — 링크 공유 통합(F012). 기존 "복사" 단독 버튼을 `radix-ui` `DropdownMenu`(`src/components/ui/DropdownMenu.tsx` 신규 래퍼) 기반 "공유" 메뉴로 교체(미리보기 버튼은 그대로 유지). 메뉴 항목: 복사(기존 피드백 유지, `onSelect` preventDefault로 메뉴 유지)/이메일(`mailto:`)/텔레그램/`navigator.share`(마운트 후에만 노출, `useSyncExternalStore`로 hydration mismatch 방지). URL 빌더는 `invoice-url.ts`에 추가(`buildInvoiceMailtoUrl`, `buildInvoiceTelegramShareUrl`). 공개 조회 페이지에 `generateMetadata` 추가 — 상태 판별을 `isPubliclyViewable()` 하나로 통일해 메타데이터·본문 양쪽에 동일 가드 적용, 비승인/없는 토큰은 식별정보 없는 폴백 메타 반환. `getInvoiceByToken`을 React `cache()`로 추가 래핑해 같은 요청 내 중복 Notion 호출 제거(Next.js 공식 문서 패턴). `opengraph-image.tsx` 신규 — 데이터 비의존 고정 placeholder로 최소 구현(신규 npm 의존성 없음). lint/tsc/build 통과, Playwright로 공유 메뉴 라이트/다크 동작 확인, `curl`로 승인/비승인 메타데이터 및 OG 이미지(1200x630 PNG) 검증.
 
 ### 진행 예정 `[ ]` (v3)
 - **Phase 10 선택 확장 (T1051~T1052)** — 결정 필요 항목(D2, D3) 확정 시 별도 승인 후 착수
-- **Phase 11 (T1101~T1105)** — 링크 공유 통합 (F012)
 - **Phase 12 (T1201~T1203)** — 통합 QA 및 배포
 
 ### 다음 작업 (우선순위)
-1. **Phase 11 (T1101~T1105)** — 이메일/메신저 공유, OG 메타데이터. 계획 수립 후 승인 받아 진행.
+1. **Phase 12 (T1201~T1203)** — v3 전체 통합 QA 및 배포.
 2. 결정 필요 항목(D1~D4) 확정 후 선택 확장·통계 태스크 편입.
 
 ### 인계 메모 (v1/v2에서 이월)

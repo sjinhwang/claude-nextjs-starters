@@ -1,0 +1,1 @@
+- [InvoiceHub 프로젝트 초기화 상태](project_invoicehub.md) — 스타터킷 정리 완료, 목표 라우트 구조 및 제거된 파일 목록

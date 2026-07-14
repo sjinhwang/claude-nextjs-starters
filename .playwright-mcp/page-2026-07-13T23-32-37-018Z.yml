@@ -1,0 +1,57 @@
+- generic [active] [ref=f4e1]:
+  - main [ref=f4e2]:
+    - generic [ref=f4e3]:
+      - generic [ref=f4e4]:
+        - generic [ref=f4e5]:
+          - button "메뉴 열기/닫기" [ref=f4e6]
+          - generic [ref=f4e12]: 견적서 관리 시스템
+        - generic [ref=f4e13]:
+          - 'button "현재 테마: 시스템. 클릭하여 전환" [ref=f4e14]'
+          - button "로그아웃" [ref=f4e17]
+      - main [ref=f4e19]:
+        - generic [ref=f4e20]:
+          - generic [ref=f4e21]:
+            - heading "견적서 관리" [level=1] [ref=f4e22]
+            - paragraph [ref=f4e23]: 총 1건
+          - button "새로고침" [ref=f4e24]
+        - generic [ref=f4e25]:
+          - textbox "클라이언트명 또는 견적서번호 검색" [ref=f4e26]
+          - generic [ref=f4e27]:
+            - button "대기" [ref=f4e28]
+            - button "승인" [ref=f4e29]
+            - button "거절" [ref=f4e30]
+          - generic [ref=f4e31]:
+            - textbox "발행일 시작" [ref=f4e32]
+            - generic [ref=f4e33]: ~
+            - textbox "발행일 종료" [ref=f4e34]
+          - button "초기화" [ref=f4e35]
+        - table [ref=f4e37]:
+          - rowgroup [ref=f4e38]:
+            - row [ref=f4e39]:
+              - columnheader [ref=f4e40]:
+                - button "견적서 번호" [ref=f4e41]
+              - columnheader "클라이언트" [ref=f4e45]
+              - columnheader [ref=f4e46]:
+                - button "발행일" [ref=f4e47]
+              - columnheader [ref=f4e50]:
+                - button "상태" [ref=f4e51]
+              - columnheader "링크" [ref=f4e55]
+          - rowgroup [ref=f4e56]:
+            - row [ref=f4e57]:
+              - cell "INV-2026-06-001" [ref=f4e58]
+              - cell "ABC 회사" [ref=f4e59]
+              - cell "2026.06.10" [ref=f4e60]
+              - cell "승인" [ref=f4e61]
+              - cell [ref=f4e63]:
+                - generic [ref=f4e64]:
+                  - link "http://localhost:3002/invoices/49d7cdb5-9ca6-4fb3-8789-7d0c991580bd" [ref=f4e65] [cursor=pointer]:
+                    - /url: http://localhost:3002/invoices/49d7cdb5-9ca6-4fb3-8789-7d0c991580bd
+                  - generic [ref=f4e66]:
+                    - button "미리보기" [ref=f4e67]
+                    - button "복사" [ref=f4e68]
+        - generic [ref=f4e69]:
+          - paragraph [ref=f4e70]: 총 1건 · 1/1 페이지
+          - generic [ref=f4e71]:
+            - button "이전" [disabled]
+            - button "다음" [disabled]
+  - button "Open Next.js Dev Tools" [ref=f4e77] [cursor=pointer]

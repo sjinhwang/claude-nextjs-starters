@@ -1,0 +1,35 @@
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "InvoiceHub" [ref=e4] [cursor=pointer]:
+        - /url: /
+      - navigation [ref=e5]:
+        - link "어드민" [ref=e6] [cursor=pointer]:
+          - /url: /admin
+      - 'button "현재 테마: 시스템. 클릭하여 전환" [ref=e8]'
+  - main [ref=e11]:
+    - generic [ref=e13]:
+      - generic [ref=e26]:
+        - generic [ref=e27]:
+          - heading "견적서 관리" [level=1] [ref=e28]
+          - paragraph [ref=e29]: 총 1건
+        - button "새로고침" [ref=e30]
+      - table [ref=e32]:
+        - rowgroup [ref=e33]:
+          - row [ref=e34]:
+            - columnheader "견적서 번호" [ref=e35]
+            - columnheader "클라이언트" [ref=e36]
+            - columnheader "발행일" [ref=e37]
+            - columnheader "상태" [ref=e38]
+            - columnheader "PDF 다운로드" [ref=e39]
+        - rowgroup [ref=e40]:
+          - row [ref=e41]:
+            - cell "INV-2026-06-001" [ref=e42]
+            - cell "ABC 회사" [ref=e43]
+            - cell "2026.06.10" [ref=e44]
+            - cell "승인" [ref=e45]
+            - cell [ref=e47]:
+              - button "미리보기" [active] [ref=e48]
+  - contentinfo [ref=e22]:
+    - paragraph [ref=e24]: © 2026 InvoiceHub. All rights reserved.
+  - alert [ref=e25]

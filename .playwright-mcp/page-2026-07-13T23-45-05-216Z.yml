@@ -1,0 +1,19 @@
+- generic [active] [ref=f7e1]:
+  - banner [ref=f7e2]:
+    - generic [ref=f7e3]:
+      - link "InvoiceHub" [ref=f7e4] [cursor=pointer]:
+        - /url: /
+      - navigation [ref=f7e5]:
+        - link "어드민" [ref=f7e6] [cursor=pointer]:
+          - /url: /admin
+      - 'button "현재 테마: 라이트. 클릭하여 전환" [ref=f7e8]'
+  - main [ref=f7e15]:
+    - generic [ref=f7e17]:
+      - heading "페이지를 찾을 수 없습니다" [level=1] [ref=f7e21]
+      - paragraph [ref=f7e22]: 요청하신 페이지가 존재하지 않거나 더 이상 제공되지 않습니다.
+      - link "홈으로 이동" [ref=f7e23] [cursor=pointer]:
+        - /url: /
+  - contentinfo [ref=f7e24]:
+    - paragraph [ref=f7e26]: © 2026 InvoiceHub. All rights reserved.
+  - button "Open Next.js Dev Tools" [ref=f7e32] [cursor=pointer]
+  - alert [ref=f7e36]

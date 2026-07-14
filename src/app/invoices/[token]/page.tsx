@@ -1,12 +1,58 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getInvoiceByToken } from "@/lib/notion";
 import PrintButton from "@/components/invoices/PrintButton";
+import type { Invoice } from "@/types/invoice";
 
 // PRD: Notion 최신 데이터 보장 — Full Route Cache 비활성화(no-store 상당)
 export const dynamic = "force-dynamic";
 
 interface PageProps {
   params: Promise<{ token: string }>;
+}
+
+/**
+ * 공개 조회 가능 여부(F001) — 승인 상태의 견적서만 공개된다.
+ * generateMetadata와 페이지 본문(notFound 분기) 양쪽에서 반드시 동일한 조건을 써야
+ * 두 판단이 어긋나 메타데이터와 실제 화면 노출 여부가 불일치하는 사고를 막을 수 있다.
+ */
+function isPubliclyViewable(invoice: Invoice | null): invoice is Invoice {
+  return !!invoice && invoice.상태 === "승인";
+}
+
+/**
+ * T1104: 공유 URL을 카카오톡/슬랙 등에 붙여넣었을 때 보이는 링크 미리보기(OG/Twitter 카드) 메타데이터.
+ * ⚠️ 비승인 상태이거나 존재하지 않는 토큰에는 견적서번호/클라이언트명 등 식별 정보를
+ * 절대 포함하지 않는 일반 폴백 메타만 반환한다 — 페이지 본문은 notFound()로 404 처리되지만
+ * 메타데이터는 크롤러/링크 미리보기 단계에서 별도로 노출될 수 있으므로 여기서도 동일하게 가드한다.
+ */
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { token } = await params;
+  const invoice = await getInvoiceByToken(token);
+
+  if (!isPubliclyViewable(invoice)) {
+    return {
+      title: "InvoiceHub 견적서",
+      description: "견적서 공개 조회 페이지",
+      openGraph: { title: "InvoiceHub 견적서", description: "견적서 공개 조회 페이지" },
+      twitter: {
+        card: "summary_large_image",
+        title: "InvoiceHub 견적서",
+        description: "견적서 공개 조회 페이지",
+      },
+    };
+  }
+
+  const issuerName = process.env.NEXT_PUBLIC_ISSUER_NAME ?? "발행인 회사명";
+  const title = `견적서 ${invoice.견적서번호} - ${issuerName}`;
+  const description = `${invoice.클라이언트명} 귀중 견적서`;
+
+  return {
+    title,
+    description,
+    openGraph: { title, description, type: "website" },
+    twitter: { card: "summary_large_image", title, description },
+  };
 }
 
 function formatKRW(amount: number | null): string {
@@ -24,8 +70,8 @@ export default async function InvoicePage({ params }: PageProps) {
   const { token } = await params;
   const invoice = await getInvoiceByToken(token);
 
-  // F001: 승인 상태가 아니면 404 반환
-  if (!invoice || invoice.상태 !== "승인") {
+  // F001: 승인 상태가 아니면 404 반환 — generateMetadata와 동일한 isPubliclyViewable 조건 사용
+  if (!isPubliclyViewable(invoice)) {
     notFound();
   }
 

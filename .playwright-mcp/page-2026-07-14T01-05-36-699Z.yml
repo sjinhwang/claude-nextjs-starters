@@ -1,0 +1,73 @@
+- generic:
+  - main:
+    - generic:
+      - generic:
+        - generic: 견적서 관리 시스템
+        - generic:
+          - button
+          - button: 로그아웃
+      - generic:
+        - complementary:
+          - navigation:
+            - link:
+              - /url: /admin
+              - text: 대시보드
+            - link:
+              - /url: /admin/invoices
+              - text: 견적서 목록
+        - main:
+          - generic:
+            - generic:
+              - heading [level=1]: 견적서 관리
+              - paragraph: 총 1건
+            - button: 새로고침
+          - generic:
+            - textbox:
+              - /placeholder: 클라이언트명 또는 견적서번호 검색
+            - generic:
+              - button: 대기
+              - button: 승인
+              - button: 거절
+            - generic:
+              - textbox
+              - generic: ~
+              - textbox
+            - button: 초기화
+          - generic:
+            - table:
+              - rowgroup:
+                - row:
+                  - columnheader:
+                    - button: 견적서 번호
+                  - columnheader: 클라이언트
+                  - columnheader:
+                    - button: 발행일
+                  - columnheader:
+                    - button: 상태
+                  - columnheader: 링크
+              - rowgroup:
+                - row:
+                  - cell: INV-2026-06-001
+                  - cell: ABC 회사
+                  - cell: 2026.06.10
+                  - cell:
+                    - generic: 승인
+                  - cell:
+                    - generic:
+                      - generic: http://localhost:3002/invoices/49d7cdb5-9ca6-4fb3-8789-7d0c991580bd
+                      - generic:
+                        - button: 미리보기
+                        - button [expanded]: 공유
+          - generic:
+            - paragraph: 총 1건 · 1/1 페이지
+            - generic:
+              - button [disabled]: 이전
+              - button [disabled]: 다음
+  - button "Open Next.js Dev Tools" [ref=f3e85] [cursor=pointer]
+  - alert
+  - menu "공유" [active] [ref=f3e205]:
+    - menuitem "복사" [ref=f3e206] [cursor=pointer]
+    - separator [ref=f3e210]
+    - menuitem "이메일로 보내기" [ref=f3e211] [cursor=pointer]
+    - menuitem "텔레그램 공유" [ref=f3e215] [cursor=pointer]
+    - menuitem "공유하기" [ref=f3e219] [cursor=pointer]

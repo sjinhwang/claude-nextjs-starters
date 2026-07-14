@@ -1,0 +1,4 @@
+- [견적서 도메인 타입](project-invoice-types.md) — src/types/invoice.ts: InvoiceStatus(대기/거절/승인), Invoice, InvoiceItem, Notion raw 타입 (2026-07-01 갱신)
+- [Notion v5 data_source_id 패턴](notion-data-source-v5.md) — databases.query 제거됨, dataSources.query + 메모이즈된 data_source_id 사용
+- [Next16 캐싱/Server Action 제약](nextjs16-caching-and-server-actions.md) — use cache는 cacheComponents 필요해 미채택, unstable_cache로 60초 캐싱 / use server 파일은 async 함수만 export 가능
+- [어드민 세션 인증 패턴](admin-session-auth-pattern.md) — HMAC 서명 쿠키 + admin/layout.tsx 게이트, cookies().delete()는 {name,path} 객체 지원(path 불일치 시 삭제 무시됨)

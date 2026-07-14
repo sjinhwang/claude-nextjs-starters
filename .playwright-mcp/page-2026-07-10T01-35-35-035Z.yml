@@ -1,0 +1,20 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "InvoiceHub" [ref=e4] [cursor=pointer]:
+        - /url: /
+      - navigation [ref=e5]:
+        - link "어드민" [ref=e6] [cursor=pointer]:
+          - /url: /admin
+      - 'button "현재 테마: 시스템. 클릭하여 전환" [ref=e8]'
+  - main [ref=e11]:
+    - generic [ref=e14]:
+      - heading "어드민 로그인" [level=3] [ref=e16]
+      - generic [ref=e18]:
+        - generic [ref=e19]:
+          - text: 비밀번호
+          - textbox "비밀번호" [ref=e20]:
+            - /placeholder: 어드민 비밀번호 입력
+        - button "로그인" [ref=e21]
+  - contentinfo [ref=e22]:
+    - paragraph [ref=e24]: © 2026 InvoiceHub. All rights reserved.
